@@ -41,6 +41,7 @@ Route::group(['prefix' => 'tasks/', 'middleware' => ['auth'], 'namespace' => 'Ta
 
     Route::get('rkau', ['as' => 'rkau_page', 'uses' => 'RkauController@index']);
     Route::post('rkau/add',['as' => 'rkau_add', 'uses' => 'RkauController@doAdd'] );
+    Route::post('rkau/save',['as' => 'rkau_save', 'uses' => 'RkauController@doSave'] );
 });
 
 Route::get('test', function() {

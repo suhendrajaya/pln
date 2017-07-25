@@ -40,8 +40,8 @@
                               <span class="fa fa-plus-circle"></span> Add
                            </span>
                         </button>
-                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }}" {{ $mode == 'edit'? 'id="editRkau"':'' }} onclick="location.href = '{!!  route('rkau_page', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'">
-                           <span class="docs-tooltip" data-toggle="tooltip" title="">
+                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }}" {{ $mode == 'edit'? "id=saveRkau":'' }} @if($mode == 'edit') '' @else onclick="location.href = '{!!  route('rkau_page', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
+                                <span class="docs-tooltip" data-toggle="tooltip" title="">
                               <span class="fa fa-pencil"></span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
                            </span>
                         </button>
@@ -54,7 +54,9 @@
                      </div>
                      <div class="clearfix"></div>
                      <div class="table-responsive">
-                        <form id="myFormUser" method="post" class="form-horizontal form-label-left">
+                        <form id="myFormRkauedit" method="post" class="form-horizontal form-label-left">
+                           <input type="hidden" name="urlsaverkausuccess"  value="{!!  route('rkau_page', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}">
+                           <input type="hidden" name="urlsaverkau"  value="{{ route('rkau_save') }}">
                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                            <table id="tblrowclick" class="table table-striped jambo_table bulk_action">
                               <thead>
@@ -84,14 +86,10 @@
                                  <tr class="even pointer">
                                     <td>
                                        {{ $i++ }}
-                                       <input type="hidden" name="id[]" id="token" value="{{ route('rkau_add') }}">
+                                       <input type="hidden" name="id[]" id="token" value="{{ $row['id'] }}">
                                     </td>
                                     <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="tarif_code[]" value="{{ $row['tarif_code'] }}"  class="form-control">
-                                       @else
                                        {{ $row['tarif_code'] }} 
-                                       @endif
                                     </td>
                                     <td>
                                        @if($mode == 'edit')
@@ -162,7 +160,7 @@
 
                               </tbody>
                            </table>
-                        </form>>
+                        </form>
                      </div>
 
                      <div class="row">

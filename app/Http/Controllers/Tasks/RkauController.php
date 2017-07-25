@@ -85,7 +85,7 @@ class RkauController extends WebBasedController
                     );
                 }
                 $input = $req->all();
-                
+
                 $salesAddCust = SalesAddCustomer::where('SUBMISSION_STATUS_CODE', $input['submission_status_code'])
                     ->where('UNIT_CODE', $input['unit_code'])
                     ->where('YEAR_CODE', $input['year_code'])
@@ -127,7 +127,7 @@ class RkauController extends WebBasedController
                 }
 
                 $rsInsert = SalesAddCustomer::insert($ins);
-           
+
 
                 return array(
                     "code" => "200",
@@ -148,37 +148,44 @@ class RkauController extends WebBasedController
         }
     }
 
-    public function doEdit(Request $req)
+    public function doSave(Request $req)
     {
         try
         {
-            $rs = Users::doUpdate($req->input('id'), $req->all());
+            $input = $req->all();
 
-            return array(
-                "code" => "200",
-                "status" => ($rs ? "success" : "fail" )
-            );
+            if ($input)
+            {
+                for ($i = 0; $i < count($input['id']); $i++)
+                {
+                    $salcus = SalesAddCustomer::find($input['id'][$i]);
+                    $salcus->q1_qty_mwh = $input['q1_qty_mwh'][$i];
+                    $salcus->q2_qty_mwh = $input['q2_qty_mwh'][$i];
+                    $salcus->q3_qty_mwh = $input['q3_qty_mwh'][$i];
+                    $salcus->q4_qty_mwh = $input['q4_qty_mwh'][$i];
+                    $salcus->q1_electricity_revenue = $input['q1_electricity_revenue'][$i];
+                    $salcus->q2_electricity_revenue = $input['q2_electricity_revenue'][$i];
+                    $salcus->q3_electricity_revenue = $input['q3_electricity_revenue'][$i];
+                    $salcus->q4_electricity_revenue = $input['q4_electricity_revenue'][$i];
+                    $salcus->save();
+                }
+
+                return array(
+                    "code" => "200",
+                    "status" => "success"
+                );
+            }
+            else
+            {
+                return array(
+                    "code" => "200",
+                    "status" => "fail",
+                    "message" => "Please select a file"
+                );
+            }
         } catch (Exception $ex)
         {
             json_encode('Caught exception: ', $ex->getMessage(), "\n");
-        }
-    }
-
-    public function doDelete(Request $req)
-    {
-        try
-        {
-            $ids = explode(",", rtrim($req->input('ids'), ','));
-
-            $rs = Users::doDelete($ids);
-
-            return array(
-                "code" => "200",
-                "status" => ($rs ? "success" : "fail" )
-            );
-        } catch (Exception $ex)
-        {
-            return json_encode('Caught exception: ', $ex->getMessage(), "\n");
         }
     }
 

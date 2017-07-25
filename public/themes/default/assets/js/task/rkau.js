@@ -127,61 +127,25 @@
       });
    }
    );
-
-   $("#doEdit").click(function (e) {
+   
+   $("#saveRkau").click(function (e) {
       e.preventDefault();
-
-      var rows = $('input[name=table_records]:checked');
-
-      if (rows.length != 1) {
-         bootbox.alert({
-            title: 'Alert',
-            message: '<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Please select 1 record!',
-            backdrop: true
-//            title: 'Loading',
-//            message: '<p><i class="fa fa-spin fa-spinner"></i> Loading...</p>'
-         });
-
-         return true;
-      }
-
-      var JSONArray = $.parseJSON(rows.attr('data')),
-              ignoreColumns = ["password"];
-
-      for (var key in JSONArray) {
-         if (ignoreColumns.indexOf(key) < 0)
-            $("[name=" + key + "]").val(JSONArray[key]);
-      }
-
-      $("#myModalLabel").text("Edit User Form");
-      $("[name=btnSave]").attr({
-         "id": "doEditSave"
-      });
-//      $("#myFormUser").attr("action", baseUrl + "/tasks/user/edit");
-      $("#btnAddNew").hide();
-      $("#btnUpdate").show();
-
-
-      $("#myForm").modal({
-         "keyboard": false,
-         "show": true
-      });
-   });
-
-   $("#btnUpdate").click(function (e) {
-      var datastring = $("#myFormUser").serialize();
+  
+      
+      var datastring = $("#myFormRkauedit").serialize();
       $.ajax({
          type: "POST",
-         url: baseUrl + '/tasks/user/edit',
+         url: $('[name=urlsaverkau]').val(),
          data: datastring,
          success: function (data, status) {
 
             if (status == 'success') {
+               
                bootbox.alert({
                   title: "Info",
                   message: '<span class="glyphicon glyphicon-saved"  aria-hidden="true"></span> Row(s) has been updated successfully',
                   callback: function () {
-                     location.reload();
+                     location.replace($('[name=urlsaverkausuccess]').val());
                   }
                });
             }
@@ -190,73 +154,7 @@
       });
    });
 
-   $("#doDel").click(function (e) {
-      e.preventDefault();
-
-      var rows = $('input[name=table_records]:checked');
-
-      if (rows.length < 1)
-      {
-         bootbox.alert({
-            title: "Alert",
-            message: '<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> Please select record(s)!',
-            backdrop: true
-         });
-         return true;
-      }
-
-      bootbox.confirm({
-         title: "Delete row(s)?",
-         message: "Are you sure to delete row(s)?",
-         buttons: {
-            cancel: {
-               label: '<i class="fa fa-times"></i> Cancel'
-            },
-            confirm: {
-               label: '<i class="fa fa-check"></i> Confirm'
-            }
-         },
-         callback: function (result) {
-
-            if (result) {
-               var sList = "";
-               rows.each(function () {
-                  sList += $(this).attr('data-id') + ',';
-               });
-
-               $.ajax({
-                  type: "POST",
-                  url: baseUrl + '/tasks/user/delete',
-                  data: {ids: sList},
-                  success: function (data, status) {
-
-                     if (status == 'success') {
-                        bootbox.alert({
-                           title: "Info",
-                           message: '<span class="glyphicon glyphicon-saved"  aria-hidden="true"></span> Row(s) has been deleted successfully',
-                           callback: function () {
-                              location.reload();
-                           }
-                        });
-                     }
-                  },
-                  dataType: 'json'
-               });
-            }
-         }
-      });
-   });
+  
 
 })(jQuery);
 
-function doAlert(msg) {
-   var dialog = bootbox.alert({
-      message: '<span class="glyphicon glyphicon-alert" aria-hidden="true"></span> ' + msg,
-      backdrop: true
-   });
-   dialog.init(function () {
-      setTimeout(function () {
-         dialog.modal('hide');
-      }, 5000);
-   });
-}

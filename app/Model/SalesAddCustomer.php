@@ -9,8 +9,8 @@ class SalesAddCustomer extends Model
 {
     protected $table = 'F_SALES_ADD_CUST_INPUT';
 
-    const CREATED_AT = 'post_date';
-    const UPDATED_AT = 'post_modified';
+//    const CREATED_AT = 'post_date';
+//    const UPDATED_AT = 'post_modified';
 
     public function scopeUserFilter($query, $param)
     {
