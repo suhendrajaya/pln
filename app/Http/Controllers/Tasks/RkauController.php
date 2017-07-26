@@ -80,8 +80,6 @@ class RkauController extends WebBasedController
             ];
             $resp = SalesAddCustomer::doGet($param);
 
-
-
             $data = [
                 'id' => 665,
                 'mode' => $req->input('mode') == 'grid'? 'grid':'edit' ,

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalesAddCustomer extends Model
 {
-    protected $table = 'F_SALES_ADD_CUST_INPUT';
+    protected $table = 'f_sales_add_cust_input';
 
 //    const CREATED_AT = 'post_date';
 //    const UPDATED_AT = 'post_modified';
@@ -47,17 +47,17 @@ class SalesAddCustomer extends Model
             }
         }
 
-        if (isset($param['order_by']) && !empty($param['order_by']))
-        {
-            foreach ($param['order_by'] as $key => $val)
-            {
-                $query->orderBy($key, $val);
-            }
-        }
-        else
-        {
-            $query->orderBy('created_at', 'desc');
-        }
+//        if (isset($param['order_by']) && !empty($param['order_by']))
+//        {
+//            foreach ($param['order_by'] as $key => $val)
+//            {
+//                $query->orderBy($key, $val);
+//            }
+//        }
+//        else
+//        {
+//            $query->orderBy('created_at', 'desc');
+//        }
 
 //        $query->whereNull('deleted_at');
 
@@ -67,7 +67,10 @@ class SalesAddCustomer extends Model
     public static function doGet($param)
     {
         $paramBt = self::UserFilter($param);
-
+        $paramBt->select('f_sales_add_cust_input.*');
+        $paramBt->leftJoin('tarifs', 'LOWER(TRIM(tarifs.tarif_code))','=','LOWER(TRIM(f_sales_add_cust_input.tarif_code))');
+        $paramBt->orderBy('tarifs.order_data' , 'asc');
+        
         $totalRecord = $paramBt->count();
 
         if ($totalRecord > 0)

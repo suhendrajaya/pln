@@ -54,14 +54,14 @@
                      </div>
                      <div class="well" style="overflow: auto">
                         <div class="col-md-2">
-                           <b>Rows</b>
+                           <b>Semxam</b>
                            <form class="form-horizontal">
                               <fieldset>
                                  <div class="control-group">
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Sales Tarif</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth  2</option>
@@ -81,7 +81,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Sales RKAU Input</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -101,7 +101,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Wilayah Depok</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -121,7 +121,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required=""  style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Budget Version Unit</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -141,7 +141,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">2017 Budget Year</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -162,7 +162,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">TM1 Unit Source</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -243,10 +243,11 @@
                            <div class="pull-left">
                               <input type="hidden" id="maxpage" value="<?php echo e($paging['totalPage']); ?>" />
                               <input type="hidden" id="jumptopageinput" value="<?php echo e(route('rkau_page')); ?>" />
-
+ <?php if(count($list)): ?>
                               Showing <?php echo e($paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) )); ?> 
                               to <?php echo e($paging['pageNo']  == $paging['totalPage'] ? $paging['totalRec'] : $paging['pageNo'] * $paging['totalPerPage']); ?> 
                               of <?php echo e($paging['totalRec']); ?> entries</div>
+                           <?php endif; ?>
 
                         </div>
                         <div class="col-sm-7">
@@ -289,7 +290,12 @@
       <div class="modal-content">
          <form id="myFormUser" method="post" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate="">
             <input type="hidden" name="_token" id="token" value="<?php echo e(csrf_token()); ?>">
-            <input type="hidden" name="urladd" id="token" value="<?php echo e(route('rkau_add')); ?>">
+            <input type="hidden" name="urladd" value="<?php echo e(route('rkau_add')); ?>">
+            
+            <input type="hidden" name="submission_status_code"  value="SSC1">
+            <input type="hidden" name="unit_code" value="DEPOK">
+            <input type="hidden" name="year_code" value="2017">
+            <input type="hidden" name="version_code" value="1.0">
             <!--<input type="hidden" name="id" id="id" value="">-->
 
             <div class="modal-header">
@@ -298,7 +304,7 @@
                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
             </div>
             <div class="modal-body">
-               <div class="form-group">
+<!--               <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Submission status code <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                      <input type="text" name="submission_status_code" required="required" class="form-control col-md-7 col-xs-12">
@@ -321,7 +327,7 @@
                   <div class="col-md-6 col-sm-6 col-xs-12">
                      <input type="text" name="version_code" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
-               </div>
+               </div>-->
                <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Excel file <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
