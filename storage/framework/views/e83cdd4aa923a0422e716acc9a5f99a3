@@ -6,18 +6,19 @@
         <div class="animate form login_form">
             <section class="login_content">
 
-                {!! Form::open(array('name'=>'form_login', 'url'=> route('auth-login'))) !!}
+                <?php echo Form::open(array('name'=>'form_login', 'url'=> route('auth-login'))); ?>
+
 
                 <h1>Login Form</h1>
-                @if (count($errors) > 0)
+                <?php if(count($errors) > 0): ?>
                 <div class="pb10">
                     <ul style="color: #ff0000;">
-                        @foreach($errors->all() as $error)
-                        <li>{!! $error !!}</li>
-                        @endforeach
+                        <?php foreach($errors->all() as $error): ?>
+                        <li><?php echo $error; ?></li>
+                        <?php endforeach; ?>
                     </ul>
                 </div>
-                @endif
+                <?php endif; ?>
                 <div>
                     <input type="text" name="email" class="form-control" placeholder="Email" required="" />
                 </div>
@@ -33,18 +34,19 @@
 
                 <div class="separator">
                     <p class="change_link">New to site?
-                        <a href="{{ route('auth-register') }}" class="to_register"> Create Account </a>
+                        <a href="<?php echo e(route('auth-register')); ?>" class="to_register"> Create Account </a>
                     </p>
 
                     <div class="clearfix"></div>
                     <br />
 
                     <div>
-                        {{-- <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> --}}
+                        <?php /* <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1> */ ?>
                         <p>©2016 All Rights Reserved</p>
                     </div>
                 </div>
-                {!! Form::close() !!}
+                <?php echo Form::close(); ?>
+
             </section>
         </div>
 
