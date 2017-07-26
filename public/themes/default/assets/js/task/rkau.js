@@ -127,11 +127,11 @@
       });
    }
    );
-   
+
    $("#saveRkau").click(function (e) {
       e.preventDefault();
-  
-      
+
+
       var datastring = $("#myFormRkauedit").serialize();
       $.ajax({
          type: "POST",
@@ -140,7 +140,7 @@
          success: function (data, status) {
 
             if (status == 'success') {
-               
+
                bootbox.alert({
                   title: "Info",
                   message: '<span class="glyphicon glyphicon-saved"  aria-hidden="true"></span> Row(s) has been updated successfully',
@@ -154,7 +154,20 @@
       });
    });
 
-  
+
 
 })(jQuery);
 
+
+function addCommas(nStr) {
+  var val = nStr;
+  val = val.replace(/[^0-9\.]/g,'');
+  
+  if(val != "") {
+    valArr = val.split('.');
+    valArr[0] = (parseInt(valArr[0],10)).toLocaleString();
+    val = valArr.join('.');
+  }
+  
+  return val;
+}

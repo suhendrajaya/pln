@@ -10,16 +10,16 @@
                   <h3>RKAU <small>Some examples to get you started</small></h3>
                </div>
 
-               <div class="title_right">
-                  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                           <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                     </div>
-                  </div>
-               </div>
+               <!--               <div class="title_right">
+                                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                                    <div class="input-group">
+                                       <input type="text" class="form-control" placeholder="Search for...">
+                                       <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button">Go!</button>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>-->
             </div>
 
             <div class="clearfix"></div>
@@ -32,19 +32,18 @@
 
                      <div class="clearfix"></div>
                   </div>
-
                   <div class="x_content">
                      <div class="btn-group" style="padding-bottom: 15px;">
-                        <button type="button" id="doAdd" class="btn btn-success">
+                        <button type="button" id="doAdd" class="btn btn-success btn-sm">
                            <span class="docs-tooltip" data-toggle="tooltip" title="">
                               <span class="fa fa-plus-circle"></span> Add
                            </span>
                         </button>
-                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }}" {{ $mode == 'edit'? "id=saveRkau":'' }} @if($mode == 'edit') '' @else onclick="location.href = '{!!  route('rkau_page', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
-                                <span class="docs-tooltip" data-toggle="tooltip" title="">
-                              <span class="fa fa-pencil"></span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
-                           </span>
-                        </button>
+                        <!--                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }}" {{ $mode == 'edit'? "id=saveRkau":'' }} @if($mode == 'edit') '' @else onclick="location.href = '{!!  route('rkau_page', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
+                                                        <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                                      <span class="fa fa-pencil"></span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
+                                                   </span>
+                                                </button>-->
                         <!--
                                                 <button type="button" id="doDel" class="btn btn-success">
                                                    <span class="docs-tooltip" data-toggle="tooltip" title="">
@@ -52,6 +51,131 @@
                                                    </span>
                                                 </button>-->
                      </div>
+                     <div class="well" style="overflow: auto">
+                        <div class="col-md-2">
+                           <b>Rows</b>
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required="" style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth  2</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+
+                        <div class="col-md-2">
+                           <b>Columns</b>
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required="" style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+
+                        <div class="col-md-2">
+                           <b>Context</b>
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required="" style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth</option>
+                                          </select>
+
+                                       </div>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                        <div class="col-md-2">
+                           &nbsp;
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required=""  style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth</option>
+                                          </select>
+
+                                       </div>
+                                    </div>
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                        <div class="col-md-2">
+                           &nbsp;
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required="" style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth</option>
+                                          </select>
+
+                                       </div>
+                                    </div>
+
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                        <div class="col-md-2">
+                           &nbsp;
+                           <form class="form-horizontal">
+                              <fieldset>
+                                 <div class="control-group">
+                                    <div class="controls">
+                                       <div class="input-prepend input-group">
+                                          <select  class="form-control" required="" style="width: 180px">
+                                             <option value="">Choose..</option>
+                                             <option value="press">Press</option>
+                                             <option value="net">Internet</option>
+                                             <option value="mouth">Word of mouth</option>
+                                          </select>
+
+                                       </div>
+                                    </div>
+
+                                 </div>
+                              </fieldset>
+                           </form>
+                        </div>
+                     </div>
+
                      <div class="clearfix"></div>
                      <div class="table-responsive">
                         <form id="myFormRkauedit" method="post" class="form-horizontal form-label-left">
@@ -62,20 +186,11 @@
                               <thead>
                                  <tr class="headings">
                                     <th class="column-title" width="20px">No </th>
-                                    <th class="column-title">Tarif Code </th>
-                                    <th class="column-title">Trw 1 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 2 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 3 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 4 Penjualan (MWh)</th>
-                                    <th class="column-title">Jumlah Penjualan (MWh) RKAU</th>
-                                    <th class="column-title">Trw 1 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 2 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 3 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 4 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Jumlah Pendapatan (Rp  Ribu) RKAU</th>
-                                    <th class="bulk-actions" colspan="8">
-                                       <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
-                                    </th>
+                                    <th class="column-title">Submission status </th>
+                                    <th class="column-title">Unit </th>
+                                    <th class="column-title">Year</th>
+                                    <th class="column-title">Version</th>
+                                    <th class="column-title">Action</th>
                                  </tr>
                               </thead>
 
@@ -86,69 +201,27 @@
                                  <tr class="even pointer">
                                     <td>
                                        {{ $i++ }}
-                                       <input type="hidden" name="id[]" id="token" value="{{ $row['id'] }}">
+                                       <input type="hidden" name="id[]" id="id" value="{{ $row['id'] }}">
                                     </td>
                                     <td class=" ">
-                                       {{ $row['tarif_code'] }} 
+                                       {{ $row['submission_status_code'] }} 
                                     </td>
                                     <td>
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q1_qty_mwh[]" value="{{ $row['q1_qty_mwh'] }}"  class="form-control right">
-                                       @else
-                                       {{ $row['q1_qty_mwh'] }} 
-                                       @endif
+                                       {{ $row['unit_code'] }} 
                                     </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q2_qty_mwh[]" value="{{ $row['q2_qty_mwh'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q2_qty_mwh'] }} 
-                                       @endif
+                                    <td>
+                                       {{ $row['year_code'] }} 
                                     </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q3_qty_mwh[]" value="{{ $row['q3_qty_mwh'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q3_qty_mwh'] }} 
-                                       @endif
+                                    <td>
+                                       {{ $row['version_code'] }} 
                                     </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q4_qty_mwh[]" value="{{ $row['q4_qty_mwh'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q4_qty_mwh'] }} 
-                                       @endif
+                                    <td>
+                                       <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{!!  route('rkau_detail', ['id' => $row['id'] ])  !!}'">
+                                          <span class="docs-tooltip" data-toggle="tooltip" title="detail">
+                                             <span class="fa fa-eye"></span> detail 
+                                          </span>
+                                       </button>
                                     </td>
-                                    <td class=" ">{{ $row['q1_qty_mwh'] + $row['q2_qty_mwh'] + $row['q3_qty_mwh'] + $row['q4_qty_mwh']  }}</td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q1_electricity_revenue[]" value="{{ $row['q1_electricity_revenue'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q1_electricity_revenue'] }} 
-                                       @endif
-                                    </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q2_electricity_revenue[]" value="{{ $row['q2_electricity_revenue'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q2_electricity_revenue'] }} 
-                                       @endif
-                                    </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q3_electricity_revenue[]" value="{{ $row['q3_electricity_revenue'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q3_electricity_revenue'] }} 
-                                       @endif
-                                    </td>
-                                    <td class=" ">
-                                       @if($mode == 'edit')
-                                       <input type="text" name="q4_electricity_revenue[]" value="{{ $row['q4_electricity_revenue'] }}"  class="form-control">
-                                       @else
-                                       {{ $row['q4_electricity_revenue'] }} 
-                                       @endif
-                                    </td>
-                                    <td class=" ">{{ $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] }}</td>
                                  </tr>
 
                                  @endforeach
@@ -168,6 +241,7 @@
                            <div class="pull-left">
                               <input type="hidden" id="maxpage" value="{{ $paging['totalPage'] }}" />
                               <input type="hidden" id="jumptopageinput" value="{{ route('rkau_page') }}" />
+
                               Showing {{ $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) }} 
                               to {{$paging['pageNo']  == $paging['totalPage'] ? $paging['totalRec'] : $paging['pageNo'] * $paging['totalPerPage']}} 
                               of {{ $paging['totalRec'] }} entries</div>
@@ -177,9 +251,21 @@
 
                            @if(count($list))
                            <div class="btn-group  pull-right">
-                              <a class="btn btn-default btn-sm {!! $paging['pageNo'] == 1 ? 'disabled' : '' !!}" id="btn_prevpage" href="{!! $paging['pageNo'] == 1 ? '#' : route('rkau_page', [ 'mode' => $mode, 'page'=>($paging['pageNo']-1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}"><span class="fa fa-arrow-left">&nbsp;</span></a>
+                              <button type="button" class="btn btn-default btn-sm {!! $paging['pageNo'] == 1 ? 'disabled' : '' !!}" @if($paging['pageNo'] == 1) '' @else onclick="location.href = '{!!  route('rkau_page', ['mode' => $mode ,  'page'=> ($paging['pageNo']-1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
+                                      <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                    <span class="fa fa-arrow-left"></span> pre
+                                 </span>
+                              </button>
                               <input id="pageinput" class="fl btn pageinput" type="text" value="{{ $paging['pageNo'] }}" />
-                              <a class="btn btn-default btn-sm {!! $paging['pageNo'] == $paging['totalPage'] ? 'disabled' : '' !!}" id="btn_nextpage" href="{!! $paging['pageNo'] == $paging['totalPage'] ? '#' : route('rkau_page', [  'mode' => $mode, 'page'=>($paging['pageNo']+1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}"><span class="fa fa-arrow-right">&nbsp;</span></a>
+                              <button type="button" class="btn btn-default btn-sm {!! $paging['pageNo'] == $paging['totalPage'] ? 'disabled' : '' !!}" @if($paging['pageNo'] == $paging['totalPage']) '' @else onclick="location.href = '{!!  route('rkau_page', ['mode' => $mode ,  'page'=> ($paging['pageNo']+1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
+                                      <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                    next <span class="fa fa-arrow-right"></span>
+                                 </span>
+                              </button>
+
+<!--                              <a class="btn btn-default btn-sm {!! $paging['pageNo'] == 1 ? 'disabled' : '' !!}" id="btn_prevpage" href="{!! $paging['pageNo'] == 1 ? '#' : route('rkau_page', [ 'mode' => $mode, 'page'=>($paging['pageNo']-1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}"><span class="fa fa-arrow-left">pre</span></a>
+                              <input id="pageinput" class="fl btn pageinput" type="text" value="{{ $paging['pageNo'] }}" />
+                              <a class="btn btn-default btn-sm {!! $paging['pageNo'] == $paging['totalPage'] ? 'disabled' : '' !!}" id="btn_nextpage" href="{!! $paging['pageNo'] == $paging['totalPage'] ? '#' : route('rkau_page', [  'mode' => $mode, 'page'=>($paging['pageNo']+1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}"><span class="fa fa-arrow-right">next</span></a>-->
                            </div>
                            @endif
                         </div>

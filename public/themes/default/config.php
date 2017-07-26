@@ -33,6 +33,7 @@ return array(
             // You can remove this line anytime.
             $theme->asset()->writeScript('inline-script', '
                     var baseUrl = "' . route('homepage') . '";
+                    
                 ');
             $theme->setTitle('Copyright ©  2013 - Laravel.in.th');
 

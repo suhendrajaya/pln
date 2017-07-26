@@ -66,6 +66,49 @@ class RkauController extends WebBasedController
         }
     }
 
+    public function detailById(Request $req)
+    {
+        try
+        {
+            $search = !$req->input('search') ? null : $req->input('search');
+            $pageNo = !$req->input('page') ? 1 : $req->input('page');
+
+            $param = [
+                'order_by' => ['created_at' => 'desc'],
+                'cur_page' => $pageNo,
+                'total_per_page' => 1000 //env('TOTAL_REC_PAGE', 10000)
+            ];
+            $resp = SalesAddCustomer::doGet($param);
+
+
+
+            $data = [
+                'mode' => $req->input('mode') ? 'edit' : $req->input('mode'),
+                'user' => $this->user,
+                'list' => $resp['data'],
+                'paging' => [
+                    'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
+                    'totalPage' => @$resp['meta']['totalPage'],
+                    'totalPerPage' => env('TOTAL_REC_PAGE', 10),
+                    'totalRec' => @$resp['meta']['totalRec'],
+                ],
+                /* set persistent search form value here */
+                'persist' => $search,
+            ];
+
+
+            $this->theme->asset()->cook('rkau', function($asset) {
+                $asset->container('footer')->usePath()->add('rkau_js', 'js/task/rkau.js');
+            });
+
+            $this->theme->asset()->serve('rkau');
+            return $this->theme->scope('tasks.rkau_detail', $data)->render();
+        } catch (Exception $ex)
+        {
+            json_encode('Caught exception: ', $ex->getMessage(), "\n");
+        }
+    }
+
     public function doAdd(Request $req)
     {
         $rsInsert = false;
@@ -121,6 +164,7 @@ class RkauController extends WebBasedController
                         'Q2_ELECTRICITY_REVENUE' => $val['trw_2_pendapatan_rp_ribu'],
                         'Q3_ELECTRICITY_REVENUE' => $val['trw_3_pendapatan_rp_ribu'],
                         'Q4_ELECTRICITY_REVENUE' => $val['trw_4_pendapatan_rp_ribu'],
+                        'HARGA_JUAL_RWH' => $val['harga_jual_rpkwh_rkau'],
 //                            'jumlah_pendapatan_rp_ribu_rkau' => $val['Q1_ELECTRICITY_REVENUE'] + $val['Q2_ELECTRICITY_REVENUE'] + $val['Q3_ELECTRICITY_REVENUE'] + $val['Q4_ELECTRICITY_REVENUE'],
 //                            'harga_jual_rpkwh_rkau' => $val['harga_jual_rpkwh_rkau']
                     ];
@@ -167,6 +211,7 @@ class RkauController extends WebBasedController
                     $salcus->q2_electricity_revenue = $input['q2_electricity_revenue'][$i];
                     $salcus->q3_electricity_revenue = $input['q3_electricity_revenue'][$i];
                     $salcus->q4_electricity_revenue = $input['q4_electricity_revenue'][$i];
+                    $salcus->harga_jual_rwh = $input['harga_jual_rwh'][$i];
                     $salcus->save();
                 }
 
