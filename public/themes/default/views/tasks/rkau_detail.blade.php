@@ -52,16 +52,16 @@
                                                    </span>
                                                 </button>-->
                      </div>
-                           <div class="well" style="overflow: auto">
+                            <div class="well" style="overflow: auto">
                         <div class="col-md-2">
-                           <b>Rows</b>
+                           <b>Semxam</b>
                            <form class="form-horizontal">
                               <fieldset>
                                  <div class="control-group">
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Sales Tarif</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth  2</option>
@@ -81,7 +81,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Sales RKAU Input</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -101,7 +101,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Wilayah Depok</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -121,7 +121,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required=""  style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">Budget Version Unit</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -141,7 +141,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">2017 Budget Year</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
@@ -162,7 +162,7 @@
                                     <div class="controls">
                                        <div class="input-prepend input-group">
                                           <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Choose..</option>
+                                             <option value="">TM1 Unit Source</option>
                                              <option value="press">Press</option>
                                              <option value="net">Internet</option>
                                              <option value="mouth">Word of mouth</option>
