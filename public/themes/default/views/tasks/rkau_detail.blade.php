@@ -40,7 +40,7 @@
                                                       <span class="fa fa-plus-circle"></span> Add
                                                    </span>
                                                 </button>-->
-                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }} btn-sm" {{ $mode == 'edit'? "id=saveRkau":'' }} @if($mode == 'edit') '' @else onclick="location.href = '{!!  route('rkau_detail', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'" @endif>
+                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-success' }} btn-sm" {{ $mode == 'edit'? "id=saveRkau":'' }}  onclick="location.href = '{!!  route('rkau_detail', ['id' => $id,'mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'">
                                 <span class="docs-tooltip" data-toggle="tooltip" title="">
                               <span class="fa fa-pencil"></span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
                            </span>

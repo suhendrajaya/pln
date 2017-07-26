@@ -83,7 +83,8 @@ class RkauController extends WebBasedController
 
 
             $data = [
-                'mode' => $req->input('mode') ? 'edit' : $req->input('mode'),
+                'id' => 665,
+                'mode' => $req->input('mode') == 'grid'? 'grid':'edit' ,
                 'user' => $this->user,
                 'list' => $resp['data'],
                 'paging' => [

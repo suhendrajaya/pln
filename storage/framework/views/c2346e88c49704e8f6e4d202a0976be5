@@ -40,7 +40,7 @@
                                                       <span class="fa fa-plus-circle"></span> Add
                                                    </span>
                                                 </button>-->
-                        <button type="button"  class="btn <?php echo e($mode == 'edit'? 'btn-danger' : 'btn-success'); ?> btn-sm" <?php echo e($mode == 'edit'? "id=saveRkau":''); ?> <?php if($mode == 'edit'): ?> '' <?php else: ?> onclick="location.href = '<?php echo route('rkau_detail', ['mode' => 'edit' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>'" <?php endif; ?>>
+                        <button type="button"  class="btn <?php echo e($mode == 'edit'? 'btn-danger' : 'btn-success'); ?> btn-sm" <?php echo e($mode == 'edit'? "id=saveRkau":''); ?>  onclick="location.href = '<?php echo route('rkau_detail', ['id' => $id,'mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>'">
                                 <span class="docs-tooltip" data-toggle="tooltip" title="">
                               <span class="fa fa-pencil"></span> <?php echo e($mode == 'edit'? 'Save' : 'Edit'); ?>
 
