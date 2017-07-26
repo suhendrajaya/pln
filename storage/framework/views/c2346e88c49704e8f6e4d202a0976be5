@@ -213,7 +213,7 @@
 
                                        <input type="hidden" name="id[]" id="id" value="<?php echo e($row['id']); ?>">
                                     </td>
-                                    <td  class="text-right">
+                                    <td>
                                        <?php echo e($row['tarif_code']); ?>
 
                                     </td>
