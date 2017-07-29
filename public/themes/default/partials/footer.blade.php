@@ -1,6 +1,6 @@
 <footer>
     <div class="pull-right">
-        <!--your company-->
+        {!! Theme::getTitle() !!}
     </div>
     <div class="clearfix"></div>
 </footer>

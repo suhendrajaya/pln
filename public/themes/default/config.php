@@ -35,7 +35,7 @@ return array(
                     var baseUrl = "' . route('homepage') . '";
                     
                 ');
-            $theme->setTitle('Copyright ©  2013 - Laravel.in.th');
+            $theme->setTitle('Copyrights © 2017 PT. PLN (Persero) All Rights Reserved');
 
             // Breadcrumb template.
             // $theme->breadcrumb()->setTemplate('
@@ -64,7 +64,8 @@ return array(
             $theme->asset()->container('footer')->usePath()->add('js_bootbox', 'vendors/bootbox/bootbox.min.js');
             $theme->asset()->container('footer')->usePath()->add('js_daterangepicker', 'vendors/bootstrap-daterangepicker/daterangepicker.js');
             $theme->asset()->container('footer')->usePath()->add('js_global', 'js/global.js');
-            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.min.js');
+//            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.min.js');
+            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.js');
 
             // You may use this event to set up your assets.
             // $theme->asset()->usePath()->add('core', 'core.js');
@@ -97,6 +98,7 @@ return array(
                 $theme->asset()->usePath()->add('css_icheck', 'vendors/iCheck/skins/flat/green.css');
                 $theme->asset()->usePath()->add('css_daterangepicker', 'vendors/bootstrap-daterangepicker/daterangepicker.css');
                 $theme->asset()->usePath()->add('css_custome', 'css/custom.min.css');
+                $theme->asset()->usePath()->add('css_table', 'css/table.css');
 
                 // $theme->asset()->usePath()->add('ipad', 'css/layouts/ipad.css');
             }

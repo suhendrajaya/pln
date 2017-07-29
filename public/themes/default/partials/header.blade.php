@@ -3,7 +3,7 @@
       <div class="col-md-3 left_col">
          <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-               <a href="index.html" class="site_title">{{-- <i class="fa fa-paw"></i> --}} <span>PLN</span></a>
+               <a href="{{ route('home-page') }}" class="site_title"> <img src="{{asset('assets/images/pln.png')}}" alt="..." width="40px;"> <span>PLN</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -15,7 +15,7 @@
                </div>
                <div class="profile_info">
                   <span>Welcome,</span>
-                  <h2>John Doe</h2>
+                  <h2>{{ Auth::User()->name }}</h2>
                </div>
                <div class="clearfix"></div>
             </div>
@@ -70,7 +70,7 @@
                <ul class="nav navbar-nav navbar-right">
                   <li class="">
                      <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                        <img src="{{asset('assets/images/img.jpg')}}" alt="">John Doe
+                        <img src="{{asset('assets/images/img.jpg')}}" alt="">{{ Auth::User()->name }}
                         <span class=" fa fa-angle-down"></span>
                      </a>
                      <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -87,10 +87,10 @@
                   </li>
 
                   <li role="presentation" class="dropdown">
-                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+<!--                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
                         <span class="badge bg-green">6</span>
-                     </a>
+                     </a>-->
                      <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         <li>
                            <a>

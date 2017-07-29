@@ -7,7 +7,7 @@
          <div class="">
             <div class="page-title">
                <div class="title_left">
-                  <h3>RKAU Detail<small>Some examples to get you started</small></h3>
+                  <h3>Penjualan RKAU</h3>
                </div>
 
                <div class="title_right">
@@ -40,9 +40,9 @@
                                                       <span class="fa fa-plus-circle"></span> Add
                                                    </span>
                                                 </button>-->
-                        <button type="button"  class="btn <?php echo e($mode == 'edit'? 'btn-danger' : 'btn-success'); ?> btn-sm" <?php echo e($mode == 'edit'? "id=saveRkau":''); ?>  onclick="location.href = '<?php echo route('rkau_detail', ['id' => $id,'mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>'">
-                                <span class="docs-tooltip" data-toggle="tooltip" title="">
-                              <span class="fa fa-pencil"></span> <?php echo e($mode == 'edit'? 'Save' : 'Edit'); ?>
+                        <button type="button"  class="btn <?php echo e($mode == 'edit'? 'btn-danger' : 'btn-primary'); ?> btn-sm" <?php echo e($mode == 'edit'? "id=saveRkau":''); ?>  onclick="location.href = '<?php echo route('rkau_detail', ['id' => $id,'mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>'">
+                           <span class="docs-tooltip" data-toggle="tooltip" title="">
+                              <span class="fa fa-pencil">t</span> <?php echo e($mode == 'edit'? 'Save' : 'Edit'); ?>
 
                            </span>
                         </button>
@@ -53,129 +53,84 @@
                                                    </span>
                                                 </button>-->
                      </div>
-                            <div class="well" style="overflow: auto">
-                        <div class="col-md-2">
-                           <b>Semxam</b>
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Sales Tarif</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth  2</option>
-                                          </select>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
 
-                        <div class="col-md-2">
-                           <b>Columns</b>
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Sales RKAU Input</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth</option>
-                                          </select>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
 
-                        <div class="col-md-2">
-                           <b>Context</b>
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">Wilayah Depok</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth</option>
-                                          </select>
 
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
-                        <div class="col-md-2">
-                           &nbsp;
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required=""  style="width: 180px">
-                                             <option value="">Budget Version Unit</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth</option>
-                                          </select>
-
-                                       </div>
-                                    </div>
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
-                        <div class="col-md-2">
-                           &nbsp;
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">2017 Budget Year</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth</option>
-                                          </select>
-
-                                       </div>
-                                    </div>
-
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
-                        <div class="col-md-2">
-                           &nbsp;
-                           <form class="form-horizontal">
-                              <fieldset>
-                                 <div class="control-group">
-                                    <div class="controls">
-                                       <div class="input-prepend input-group">
-                                          <select  class="form-control" required="" style="width: 180px">
-                                             <option value="">TM1 Unit Source</option>
-                                             <option value="press">Press</option>
-                                             <option value="net">Internet</option>
-                                             <option value="mouth">Word of mouth</option>
-                                          </select>
-
-                                       </div>
-                                    </div>
-
-                                 </div>
-                              </fieldset>
-                           </form>
-                        </div>
+                     <div class="well" style="overflow: auto">
+                        <form class="form-inline">
+                           <div class="form-group">
+                              <label>Semxam</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
+                              <label>Columns</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
+                              <label>Context</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label>&nbsp;</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label>&nbsp;</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label>&nbsp;</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" required="" style="width: 180px">
+                                    <option value="">Sales Tarif</option>
+                                    <option value="press">Press</option>
+                                    <option value="net">Internet</option>
+                                    <option value="mouth">Word of mouth  2</option>
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label>&nbsp;</label><br>
+                              <div class="input-prepend input-group">
+                                 <button type="button" class="btn btn-sm btn-primary">Search</button>
+                              </div>
+                           </div>
+                        </form>   
                      </div>
 
                      <div class="clearfix"></div>
@@ -184,22 +139,22 @@
                            <input type="hidden" name="urlsaverkausuccess"  value="<?php echo route('rkau_detail', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>">
                            <input type="hidden" name="urlsaverkau"  value="<?php echo e(route('rkau_save')); ?>">
                            <input type="hidden" name="_token" id="token" value="<?php echo e(csrf_token()); ?>">
-                           <table id="tblrowclick" class="table table-striped jambo_table bulk_action">
+                           <table class="table-style-form">
                               <thead>
-                                 <tr class="headings">
-                                    <th class="column-title" width="200px">No </th>
-                                    <th class="column-title" width="500px">Tarif Code </th>
-                                    <th class="column-title">Trw 1 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 2 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 3 Penjualan (MWh)</th>
-                                    <th class="column-title">Trw 4 Penjualan (MWh)</th>
-                                    <th class="column-title">Jumlah Penjualan (MWh) RKAU</th>
-                                    <th class="column-title">Trw 1 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 2 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 3 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Trw 4 Pendapatan (Rp  Ribu)</th>
-                                    <th class="column-title">Jumlah Pendapatan (Rp  Ribu) RKAU</th>
-                                    <th class="column-title">Harga Jual (Rp/kWh) RKAU</th>
+                                 <tr>
+                                    <th>No </th>
+                                    <th>Tarif Code </th>
+                                    <th>Trw 1 Penjualan (MWh)</th>
+                                    <th>Trw 2 Penjualan (MWh)</th>
+                                    <th>Trw 3 Penjualan (MWh)</th>
+                                    <th>Trw 4 Penjualan (MWh)</th>
+                                    <th>Jumlah Penjualan (MWh) RKAU</th>
+                                    <th>Trw 1 Pendapatan (Rp  Ribu)</th>
+                                    <th>Trw 2 Pendapatan (Rp  Ribu)</th>
+                                    <th>Trw 3 Pendapatan (Rp  Ribu)</th>
+                                    <th>Trw 4 Pendapatan (Rp  Ribu)</th>
+                                    <th>Jumlah Pendapatan (Rp  Ribu) RKAU</th>
+                                    <th>Harga Jual (Rp/kWh) RKAU</th>
                                  </tr>
                               </thead>
 
@@ -279,7 +234,7 @@
                                     <td>
                                        <input type="text" class="text-right" disabled="disabled"value="<?php echo e($row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue']); ?>">
 
-                                       
+
                                     </td>
                                     <td  class="text-right">
                                        <?php if($mode == 'edit'): ?>

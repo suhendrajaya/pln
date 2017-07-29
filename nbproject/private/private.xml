@@ -5,17 +5,15 @@
         <group>
             <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/tasks/rkau.blade.php</file>
             <file>file:/C:/xampp/htdocs/sj/pln/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/partials/header.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/app/Model/SalesAddCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/home/login.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/layouts/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/home/homepage.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/home/register.blade.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/config.php</file>
             <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/task/rkau.js</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/partials/footer.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/layouts/login.blade.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/app/Http/Controllers/Auth/AuthController.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/app/Model/SalesAddCustomer.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/layouts/home.blade.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/custom.js</file>
             <file>file:/C:/xampp/htdocs/sj/pln/app/Http/Controllers/Tasks/RkauController.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/css/custom.css</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/custom.min.js</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/tasks/rkau_detail.blade.php</file>
         </group>
     </open-files>
 </project-private>
