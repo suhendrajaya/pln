@@ -16,7 +16,8 @@
 //});
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
-Route::post('auth/login', ['as' => 'auth-login', 'uses' => 'Auth\AuthController@postLogin']);
+//Route::post('auth/login', ['as' => 'auth-login', 'uses' => 'Auth\AuthController@doLogin']);
+Route::post('auth/login', ['as' => 'auth-login', 'uses' => 'Pln\LoginController@doLogin']);
 Route::get('auth/logout', ['as' => 'auth-logout', 'uses' => 'Auth\AuthController@getLogout']);
 
 // Registration routes...
@@ -26,7 +27,7 @@ Route::post('auth/register', ['as' => 'auth-register', 'uses' => 'Auth\AuthContr
 
 //
 Route::group(['namespace' => 'Pln'], function() {
-    Route::get('/', ['as' => 'homepage', 'uses' => 'WebController@login']);
+    Route::get('/', ['as' => 'homepage' , 'uses' => 'WebController@login']);
     Route::get('/home', ['as' => 'home-page', 'uses' => 'WebController@home']);
 //   Route::post('/do-login', ['as' => 'do-login', 'uses' => 'LoginController@doLogin']);
 //   Route::get('/logout', ['as' => 'logout-page', 'uses' => 'LoginController@logout']);

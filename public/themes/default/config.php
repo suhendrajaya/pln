@@ -64,8 +64,8 @@ return array(
             $theme->asset()->container('footer')->usePath()->add('js_bootbox', 'vendors/bootbox/bootbox.min.js');
             $theme->asset()->container('footer')->usePath()->add('js_daterangepicker', 'vendors/bootstrap-daterangepicker/daterangepicker.js');
             $theme->asset()->container('footer')->usePath()->add('js_global', 'js/global.js');
-//            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.min.js');
-            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.js');
+            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.min.js');
+//            $theme->asset()->container('footer')->usePath()->add('js_custom', 'js/custom.js');
 
             // You may use this event to set up your assets.
             // $theme->asset()->usePath()->add('core', 'core.js');

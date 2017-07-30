@@ -33,29 +33,27 @@ class LoginController extends Controller
 
       $userdata = [
         'username' => Input::get('username'),
-        'password' => Input::get('password'),
-        'using' => 'username',
-        'remember' => 0
+        'password' => Input::get('password')
       ];
 
       $validator = Validator::make(Input::all(), $rules);
       if ($validator->fails())
       {
-         $url = route('login-page');
+         $url = route('home-page');
          return Redirect::to($url)
              ->withErrors($validator)
              ->withInput(Input::except('password'));
       }
       else
       {
-         if (Auth::attempt($userdata))
+         if (Auth::attempt($userdata,true))
          {
             return Redirect::to(route('home-page'));
          }
          else
          {
             $validator->getMessageBag()->add('username', trans('web.invalidLogin'));
-            $url = route('login-page');
+            $url = route('home-page');
             return Redirect::to($url)
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));

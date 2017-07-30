@@ -6,7 +6,7 @@
         <div class="animate form login_form">
             <section class="login_content">
 
-                {!! Form::open(array('name'=>'form_login', 'url'=> route('auth-login'))) !!}
+                {!! Form::open(array('name'=>'form_login','method'=>'post', 'url'=> route('auth-login'))) !!}
 
                 <h1>Login Form</h1>
                 @if (count($errors) > 0)
@@ -19,7 +19,7 @@
                 </div>
                 @endif
                 <div>
-                    <input type="text" name="email" class="form-control" placeholder="Email" required="" />
+                    <input type="text" name="username" class="form-control" placeholder="Username" required="" />
                 </div>
                 <div>
                     <input type="password" name="password" class="form-control" placeholder="Password" required="" />

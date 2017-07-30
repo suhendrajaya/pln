@@ -23,7 +23,10 @@ class WebController extends Controller
    public function home()
    {
       $data = [];
-
+      
+      
+       $roleArray = json_decode(json_encode(Auth::user()->roles), true);
+      dd(Auth::user()->isReviewer);
       $this->theme = Theme::uses('default')->layout('home');
 
       return $this->theme->scopeWithLayout('homepage', $data)->render();

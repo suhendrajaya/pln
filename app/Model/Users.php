@@ -13,6 +13,7 @@ class Users extends Model
     protected $dates = ['deleted_at'];
     protected $table = 'users';
 
+    
     public function scopeUserFilter($query, $param)
     {
         if (isset($param['search_term']) && !empty($param['search_term']))
@@ -171,7 +172,7 @@ class Users extends Model
                     if ($column == "birth_date")
                     {
 //                        $me->$column = date('d-M-Y', strtotime($input[$column]));
-                        $me->$column = date_format(date_create($input[$column]),'Y-m-d');
+                        $me->$column = date_format(date_create($input[$column]), 'Y-m-d');
 //                        echo date_format(date_create($input[$column]),'d-M-Y');exit;
                     }
                     else
