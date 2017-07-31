@@ -25,7 +25,7 @@ class AuthController extends Controller
 
 use AuthenticatesAndRegistersUsers,
     ThrottlesLogins;
-    protected $redirectPath = '/tasks';
+    protected $redirectPath = '/dashboard';
     protected $loginPath = '/';
 
     /**
@@ -74,42 +74,5 @@ use AuthenticatesAndRegistersUsers,
         return $this->theme->scope('home.register')->render();
     }
 
-    public function doLogin(Request $req)
-    {
-        $rules = array(
-            'username' => 'required',
-            'password' => 'required'
-        );
-        $userdata = [
-            'username' => $req->input('username'),
-            'password' => $req->input('password'),
-            'using' => 'username',
-            'remember' => 1
-        ];
-
-        $validator = Validator::make(Input::all(), $rules);
-        if ($validator->fails())
-        {
-            $url = route('homepage');
-            return Redirect::to($url)
-                    ->withErrors($validator)
-                    ->withInput(Input::except('password'));
-        }
-        else
-        {
-            if (Auth::attempt($userdata))
-            {
-                return Redirect::to(route('home-page'));
-            }
-            else
-            {
-                $validator->getMessageBag()->add('username', trans('web.invalidLogin'));
-                $url = route('homepage');
-                return Redirect::to($url)
-                        ->withErrors($validator)
-                        ->withInput(Input::except('password'));
-            }
-        }
-    }
 
 }

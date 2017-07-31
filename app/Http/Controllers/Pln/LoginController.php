@@ -48,7 +48,7 @@ class LoginController extends Controller
       {
          if (Auth::attempt($userdata,true))
          {
-            return Redirect::to(route('home-page'));
+            return Redirect::to(route('dashboard_page'));
          }
          else
          {

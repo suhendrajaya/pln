@@ -35,6 +35,8 @@ Route::group(['namespace' => 'Pln'], function() {
 
 //Route::group(['prefix' => 'tasks/', 'namespace' => 'Tasks'], function () {
 Route::group(['prefix' => 'tasks/', 'middleware' => ['auth'], 'namespace' => 'Tasks'], function () {
+    Route::get('dashboard', ['as' => 'dashboard_page', 'uses' => 'DashboardController@index']);
+    
     Route::get('/', ['as' => 'user_page', 'uses' => 'UsersController@index']);
     Route::post('user/add', 'UsersController@doAdd');
     Route::post('user/edit', 'UsersController@doEdit');
