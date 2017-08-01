@@ -113,13 +113,24 @@
          contentType: false,
          processData: false,
          success: function (data, status) {
+//console.log('data');
+//console.log(data);
+//console.log('status');
+//console.log(status);
+//
+//return;
 
-            if (status == 'success') {
+            if (data.status == 'success') {
                bootbox.alert({
                   message: '<span class="glyphicon glyphicon-saved"  aria-hidden="true"></span> Row(s) has been updated successfully',
                   callback: function () {
                      location.reload();
                   }
+               });
+            } else {
+               bootbox.alert({
+                  title: "Alert",
+                  message: '<span class="glyphicon glyphicon-alert"  aria-hidden="true"></span> ' + data.message
                });
             }
          },
@@ -131,7 +142,6 @@
    $("#saveRkau").click(function (e) {
       e.preventDefault();
 
-
       var datastring = $("#myFormRkauedit").serialize();
       $.ajax({
          type: "POST",
@@ -140,7 +150,6 @@
          success: function (data, status) {
 
             if (status == 'success') {
-
                bootbox.alert({
                   title: "Info",
                   message: '<span class="glyphicon glyphicon-saved"  aria-hidden="true"></span> Row(s) has been updated successfully',
@@ -158,16 +167,62 @@
 
 })(jQuery);
 
+function countVertikal(id) {
 
-function addCommas(nStr) {
-  var val = nStr;
-  val = val.replace(/[^0-9\.]/g,'');
-  
-  if(val != "") {
-    valArr = val.split('.');
-    valArr[0] = (parseInt(valArr[0],10)).toLocaleString();
-    val = valArr.join('.');
-  }
-  
-  return val;
+
+   var res = id.split("-");
+
+   if (res[0] == 'b' || res[0] == 'c' || res[0] == 'd' || res[0] == 'e') {
+      $('#f-' + res[1]).val(787888787);
+   }
+
+   console.log('id');
+   console.log(res[0]);
+   console.log('f-' +res[1]);
 }
+function countHorizon(id) {
+
+
+   var res = id.split("-");
+
+   if (res[0] == 'b' || res[0] == 'c' || res[0] == 'd' || res[0] == 'e') {
+      $('#f-' + res[1]).val(787888787);
+   }
+
+   console.log('id');
+   console.log(res[0]);
+   console.log('f-' +res[1]);
+}
+
+
+function addCommas(arg) {
+   var id = arg.getAttribute('id');
+   countHorizon(id);
+
+   var value = this.value;
+   console.log(name);
+   return 3;
+//   var val = nStr;
+//   val = val.replace(/[^0-9\.]/g, '');
+//
+//   if (val != "") {
+//      valArr = val.split('.');
+//      valArr[0] = (parseInt(valArr[0], 10)).toLocaleString();
+//      val = valArr.join('.');
+//   }
+//
+//   return val;
+}
+//
+//function addCommas(nStr) {
+//   var val = nStr;
+//   val = val.replace(/[^0-9\.]/g, '');
+//
+//   if (val != "") {
+//      valArr = val.split('.');
+//      valArr[0] = (parseInt(valArr[0], 10)).toLocaleString();
+//      val = valArr.join('.');
+//   }
+//
+//   return val;
+//}

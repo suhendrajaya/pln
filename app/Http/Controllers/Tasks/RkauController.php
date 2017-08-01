@@ -8,6 +8,7 @@ use App\Model\Users;
 use App\Model\SalesAddCustomer;
 use Auth;
 use Excel;
+use DB;
 
 class RkauController extends WebBasedController
 {
@@ -136,7 +137,12 @@ class RkauController extends WebBasedController
 
                 if ($salesAddCust->count() > 0)
                 {
-                    $salesAddCust->delete();
+//                    $salesAddCust->delete();
+                    return array(
+                        "code" => "200",
+                        "status" => "fail",
+                        "message" => "Data is exist"
+                    );
                 }
 
                 config(['excel.import.startRow' => 3]);
@@ -156,7 +162,6 @@ class RkauController extends WebBasedController
                             'UNIT_ID' => $this->user->unit_id,
                             'YEAR' => date('Y'),
                             'ORDER_ID' => $val['a'],
-                            'ORDER_GROUP_ID' => $val['b'],
                             'TARIF_CODE1' => $val['c'],
                             'TARIF_CODE2' => $val['d'],
                             'PJL_Q1' => $val['e'],
@@ -172,8 +177,7 @@ class RkauController extends WebBasedController
                             'SELLING_PRICE' => $val['o'],
                             'UPLOADBY_ID' => $this->user->id,
                             'UPLOADBY_NAME' => $this->user->name,
-                            'CREATED_AT' => date('Y-m-d G:i:s'),
-                            'UPDATED_AT' => date('Y-m-d G:i:s'),
+                            'CREATED_AT' => date('Y-m-d G:i:s')
                         ];
                     }
                 }
@@ -201,26 +205,37 @@ class RkauController extends WebBasedController
 
     public function doSave(Request $req)
     {
+        DB::beginTransaction();
+
         try
         {
             $input = $req->all();
-
             if ($input)
             {
+                //dd($input);
+
                 for ($i = 0; $i < count($input['id']); $i++)
                 {
                     $salcus = SalesAddCustomer::find($input['id'][$i]);
-                    $salcus->q1_qty_mwh = $input['q1_qty_mwh'][$i];
-                    $salcus->q2_qty_mwh = $input['q2_qty_mwh'][$i];
-                    $salcus->q3_qty_mwh = $input['q3_qty_mwh'][$i];
-                    $salcus->q4_qty_mwh = $input['q4_qty_mwh'][$i];
-                    $salcus->q1_electricity_revenue = $input['q1_electricity_revenue'][$i];
-                    $salcus->q2_electricity_revenue = $input['q2_electricity_revenue'][$i];
-                    $salcus->q3_electricity_revenue = $input['q3_electricity_revenue'][$i];
-                    $salcus->q4_electricity_revenue = $input['q4_electricity_revenue'][$i];
-                    $salcus->harga_jual_rwh = $input['harga_jual_rwh'][$i];
+
+                    $salcus->PJL_Q1 = floatval($input['pjl_q1'][$i]);
+                    $salcus->PJL_Q2 = floatval($input['pjl_q2'][$i]);
+                    $salcus->PJL_Q3 = floatval($input['pjl_q3'][$i]);
+                    $salcus->PJL_Q4 = floatval($input['pjl_q4'][$i]);
+                    $salcus->PJL_SUM = floatval($input['pjl_sum'][$i]);
+                    $salcus->PDP_Q1 = floatval($input['pdp_q1'][$i]);
+                    $salcus->PDP_Q2 = floatval($input['pdp_q2'][$i]);
+                    $salcus->PDP_Q3 = floatval($input['pdp_q3'][$i]);
+                    $salcus->PDP_Q4 = floatval($input['pdp_q4'][$i]);
+                    $salcus->PDP_SUM = floatval($input['pdp_sum'][$i]);
+                    $salcus->SELLING_PRICE = floatval($input['selling_price'][$i]);
+
+                    $salcus->UPLOADBY_ID = $this->user->id;
+                    $salcus->UPLOADBY_NAME = $this->user->name;
+
                     $salcus->save();
                 }
+                DB::commit();
 
                 return array(
                     "code" => "200",

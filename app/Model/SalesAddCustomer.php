@@ -61,7 +61,6 @@ class SalesAddCustomer extends Model
 //        $query->whereNull('deleted_at');
 
         $query->orderby('order_id', 'asc');
-        $query->orderby('order_group_id', 'asc');
 
         return $query;
     }

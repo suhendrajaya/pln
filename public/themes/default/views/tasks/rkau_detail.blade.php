@@ -13,10 +13,10 @@
                <div class="title_right">
                   <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
+<!--                        <input type="text" class="form-control" placeholder="Search for...">
                         <span class="input-group-btn">
                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
+                        </span>-->
                      </div>
                   </div>
                </div>
@@ -34,24 +34,7 @@
                   </div>
 
                   <div class="x_content">
-                     <div class="btn-group" style="padding-bottom: 15px;">
-                        <!--                        <button type="button" id="doAdd" class="btn btn-success">
-                                                   <span class="docs-tooltip" data-toggle="tooltip" title="">
-                                                      <span class="fa fa-plus-circle"></span> Add
-                                                   </span>
-                                                </button>-->
-                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-primary' }} btn-sm" {{ $mode == 'edit'? "id=saveRkau":'' }}  onclick="location.href = '{!!  route('rkau_detail', ['mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'">
-                           <span class="docs-tooltip" data-toggle="tooltip" title="">
-                              <span class="fa fa-pencil">t</span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
-                           </span>
-                        </button>
-                        <!--
-                                                <button type="button" id="doDel" class="btn btn-success">
-                                                   <span class="docs-tooltip" data-toggle="tooltip" title="">
-                                                      <span class="fa fa-trash"></span> Delete
-                                                   </span>
-                                                </button>-->
-                     </div>
+
 
 
 
@@ -60,7 +43,7 @@
                            <div class="form-group">
                               <label>Semxam</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -71,7 +54,7 @@
                            <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
                               <label>Columns</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -82,7 +65,7 @@
                            <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
                               <label>Context</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -93,7 +76,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -104,7 +87,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -115,7 +98,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 180px">
+                                 <select  class="form-control" required="" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -129,19 +112,39 @@
                                  <button type="button" class="btn btn-sm btn-primary">Search</button>
                               </div>
                            </div>
+                           <div class="form-group" style="margin-left: 75px;border-left: #ccc dotted 1px;padding-left: 10px;margin-bottom: 12px;">
+                              <label>Action</label><br>
+                              <!--<div class="btn-group">-->
+                              <button type="button" id="doAdd" class="btn btn-sm btn-success">
+                                 <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                    <span class="fa fa-plus-circle"></span> Add
+                                 </span>
+                              </button>
+                              <button type="button"  class="btn btn-primary btn-sm" id="saveRkau">
+                                 <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                    <span class="fa fa-pencil"></span> Save
+                                 </span>
+                              </button>
+                              <!--
+                                                      <button type="button" id="doDel" class="btn btn-success">
+                                                         <span class="docs-tooltip" data-toggle="tooltip" title="">
+                                                            <span class="fa fa-trash"></span> Delete
+                                                         </span>
+                                                      </button>-->
+                              <!--</div>-->
+                           </div>
                         </form>   
                      </div>
 
                      <div class="clearfix"></div>
                      <div class="table-responsive" style="overflow-y: hidden;">
                         <form id="myFormRkauedit" method="post" class="form-horizontal form-label-left">
-                           <input type="hidden" name="urlsaverkausuccess"  value="{!!  route('rkau_detail', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}">
+                           <input type="hidden" name="urlsaverkausuccess"  value="{!!  route('rkau_page', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}">
                            <input type="hidden" name="urlsaverkau"  value="{{ route('rkau_save') }}">
                            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                            <table class="table-style-form">
                               <thead>
                                  <tr>
-                                    <th>No </th>
                                     <th colspan="2">Tarif Code </th>
                                     <th>Trw 1 Penjualan (MWh)</th>
                                     <th>Trw 2 Penjualan (MWh)</th>
@@ -155,6 +158,21 @@
                                     <th>Jumlah Pendapatan (Rp  Ribu) RKAU</th>
                                     <th>Harga Jual (Rp/kWh) RKAU</th>
                                  </tr>
+                                 <tr>
+
+                                    <th colspan="2">a </th>
+                                    <th> b</th>
+                                    <th> c</th>
+                                    <th> d</th>
+                                    <th> e</th>
+                                    <th>f=b+c+d+e</th>
+                                    <th>g</th>
+                                    <th>h</th>
+                                    <th>i</th>
+                                    <th>j</th>
+                                    <th> k=g+h+i+j </th>
+                                    <th> l=k/f </th>
+                                 </tr>
                               </thead>
 
                               <tbody>
@@ -162,88 +180,60 @@
                                  <?php $i = $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) ?>
                                  @foreach($list as $row)
                                  <tr class="even pointer">
-                                    <td>
-                                       {{ $i++ }}
+                                    <!--<td style="text-align: center;">-->
+                                    <!--</td>-->
+                                    <td width="100">
                                        <input type="hidden" name="id[]" id="id" value="{{ $row['id'] }}">
-                                    </td>
-                                    <td>
                                        {{ $row['tarif_code1'] }}
                                     </td>
-                                    <td>
+                                    <td width="150">
                                        {{ $row['tarif_code2'] }}
                                     </td>
                                     <td class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q1_qty_mwh[]" value="{{ $row['pjl_q1'] }}" onkeyup="this.value = addCommas(this.value);" >
-                                       @else
-                                       {{ $row['pjl_q1'] }} 
-                                       @endif
+
+                                       <input type="text" class="text-right" id="{{ 'b-'.$i }}" name="pjl_q1[]" value="{{ number_format($row['pjl_q1']) }}" {{ $row['tarif_code1']=='S' ? 'readonly="readonly"':'' }}  style="width: 95px" onkeyup="this.value = addCommas(this.value);" >
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q2_qty_mwh[]" value="{{ $row['pjl_q2'] }}"  onkeyup="this.value = addCommas(this.value);" >
-                                       @else
-                                       {{ $row['pjl_q2'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" id="{{ 'c-'.$i }}"name="pjl_q2[]" value="{{ number_format($row['pjl_q2']) }}"  style="width: 95px" onkeyup="addCommas(this);" >
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q3_qty_mwh[]" value="{{ $row['pjl_q3'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pjl_q3'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" id="{{ 'd-'.$i }}"name="pjl_q3[]" value="{{ number_format($row['pjl_q3']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q4_qty_mwh[]" value="{{ $row['pjl_q4'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pjl_q4'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" id="{{ 'e-'.$i }}"name="pjl_q4[]" value="{{ number_format($row['pjl_q4']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td> 
-                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['pjl_sum']  }}">
+                                       <input type="text" class="text-right" id="{{ 'f-'.$i }}"name="pjl_sum[]" value="{{ number_format($row['pjl_sum']) }}" style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q1_electricity_revenue[]" value="{{ $row['pdp_q1'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pdp_q1'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" name="pdp_q1[]" value="{{ number_format($row['pdp_q1']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q2_electricity_revenue[]" value="{{ $row['pdp_q2'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pdp_q2'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" name="pdp_q2[]" value="{{ number_format($row['pdp_q2']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q3_electricity_revenue[]" value="{{ $row['pdp_q3'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pdp_q3'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" name="pdp_q3[]" value="{{ number_format($row['pdp_q3']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q4_electricity_revenue[]" value="{{ $row['pdp_q4'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['pdp_q4'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" name="pdp_q4[]" value="{{ number_format($row['pdp_q4']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+
                                     </td>
                                     <td>
-                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['pdp_sum'] }}">
-
-
+                                       <input type="text" class="text-right" name="pdp_sum[]" value="{{ number_format($row['pdp_sum']) }}"  style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="harga_jual_rwh[]" value="{{ $row['selling_price'] }}"   onkeyup="this.value = addCommas(this.value);">
-                                       @else
-                                       {{ $row['selling_price'] }} 
-                                       @endif
+                                       <input type="text" class="text-right" name="selling_price[]"  value="{{ number_format($row['selling_price']) }}" style="width: 95px"  onkeyup="this.value = addCommas(this.value);" readonly="readonly">
+
                                     </td>
                                  </tr>
+                                    <?php $i++ ?> 
 
                                  @endforeach
                                  @else
@@ -295,8 +285,64 @@
       <div class="modal-content">
          <form id="myFormUser" method="post" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate="">
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+            <input type="hidden" name="urladd" value="{{ route('rkau_add') }}">
+
+            <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+               </button>
+               <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+               <!--               <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Submission status code <span class="required">*</span></label>
+                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="submission_status_code" required="required" class="form-control col-md-7 col-xs-12">
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Unit code <span class="required">*</span></label>
+                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="unit_code" required="required" class="form-control col-md-7 col-xs-12">
+                                 </div>
+                              </div>
+                              <div class="form-group">
+                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Year code <span class="required">*</span></label>
+                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="year_code" required="required" class="form-control col-md-7 col-xs-12">
+                                 </div>
+                              </div>
+               -->
+               <div class="form-group">
+                  <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">&nbsp;</label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     Please download template first! <a href="{{ route('rkau_down') }}" target="_blank"><b>click here</b></a>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Excel file <span class="required">*</span></label>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                     <input type="file" name="fileToUpload" id="fileToUpload">
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+               <button type="button" id="btnAddNew" class="btn btn-sm btn-primary">Add New</button>
+               <button type="button" id="btnUpdate" class="btn btn-sm btn-primary">Update Row</button>
+            </div>
+         </form>
+
+      </div>
+   </div>
+</div>
+<!--form yeah --> 
+<!--<div class="modal fade bs-example-modal-lg" id="myForm" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+   <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+         <form id="myFormUser" method="post" data-parsley-validate="" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate="">
+            <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <input type="hidden" name="urladd" id="token" value="{{ route('rkau_add') }}">
-            <!--<input type="hidden" name="id" id="id" value="">-->
+            <input type="hidden" name="id" id="id" value="">
 
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -344,4 +390,4 @@
 
       </div>
    </div>
-</div>
+</div>-->
