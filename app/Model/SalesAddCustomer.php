@@ -60,8 +60,8 @@ class SalesAddCustomer extends Model
 //        }
 //        $query->whereNull('deleted_at');
 
-        $query->orderBy('ORDER_ID', 'desc');
-        $query->orderBy('ORDER_GROUP_ID', 'desc');
+        $query->orderby('order_id', 'asc');
+        $query->orderby('order_group_id', 'asc');
 
         return $query;
     }

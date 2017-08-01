@@ -33,11 +33,13 @@ class RkauController extends WebBasedController
 //            'search_term' => ['name' => 'asd'],
                 'order_by' => ['created_at' => 'desc'],
                 'cur_page' => $pageNo,
-                'total_per_page' => env('TOTAL_REC_PAGE', 10)
+                'total_per_page' => 100
             ];
             $resp = SalesAddCustomer::doGet($param);
 
-
+//            echo '<pre>';
+//            print_r($resp['data']);
+//            exit;
 
             $data = [
                 'mode' => $req->input('mode'),
@@ -46,7 +48,7 @@ class RkauController extends WebBasedController
                 'paging' => [
                     'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
                     'totalPage' => @$resp['meta']['totalPage'],
-                    'totalPerPage' => env('TOTAL_REC_PAGE', 10),
+                    'totalPerPage' => 100,
                     'totalRec' => @$resp['meta']['totalRec'],
                 ],
                 /* set persistent search form value here */
@@ -59,7 +61,7 @@ class RkauController extends WebBasedController
             });
 
             $this->theme->asset()->serve('rkau');
-            return $this->theme->scope('tasks.rkau', $data)->render();
+            return $this->theme->scope('tasks.rkau_detail', $data)->render();
         } catch (Exception $ex)
         {
             json_encode('Caught exception: ', $ex->getMessage(), "\n");
@@ -144,18 +146,12 @@ class RkauController extends WebBasedController
                 $ins = [];
                 $results = $reader->toArray();
 
-//                echo '<pre>';
-//                print_r($results);
-//                exit;
+
                 foreach ($results as $val)
                 {
 
                     if (is_numeric($val['a']))
                     {
-                        $pjl_sum = $val['e'] + $val['f'] + $val['g'] + $val['h'];
-                        $pdp_sum = $val['j'] + $val['k'] + $val['l'] + $val['m'];
-                        $selling_price = ($pdp_sum > 0 && $pjl_sum > 0 ) ? $pdp_sum / $pjl_sum : 0;
-
                         $ins[] = [
                             'UNIT_ID' => $this->user->unit_id,
                             'YEAR' => date('Y'),
@@ -167,13 +163,13 @@ class RkauController extends WebBasedController
                             'PJL_Q2' => $val['f'],
                             'PJL_Q3' => $val['g'],
                             'PJL_Q4' => $val['h'],
-                            'PJL_SUM' => $pjl_sum,
+                            'PJL_SUM' => $val['i'],
                             'PDP_Q1' => $val['j'],
                             'PDP_Q2' => $val['k'],
                             'PDP_Q3' => $val['l'],
                             'PDP_Q4' => $val['m'],
-                            'PDP_SUM' => $pdp_sum,
-                            'SELLING_PRICE' => $selling_price,
+                            'PDP_SUM' => $val['n'],
+                            'SELLING_PRICE' => $val['o'],
                             'UPLOADBY_ID' => $this->user->id,
                             'UPLOADBY_NAME' => $this->user->name,
                             'CREATED_AT' => date('Y-m-d G:i:s'),

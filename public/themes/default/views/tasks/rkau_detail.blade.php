@@ -40,7 +40,7 @@
                                                       <span class="fa fa-plus-circle"></span> Add
                                                    </span>
                                                 </button>-->
-                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-primary' }} btn-sm" {{ $mode == 'edit'? "id=saveRkau":'' }}  onclick="location.href = '{!!  route('rkau_detail', ['id' => $id,'mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'">
+                        <button type="button"  class="btn {{  $mode == 'edit'? 'btn-danger' : 'btn-primary' }} btn-sm" {{ $mode == 'edit'? "id=saveRkau":'' }}  onclick="location.href = '{!!  route('rkau_detail', ['mode' => ($mode !== 'edit' ? 'edit' : 'grid' ) ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]) !!}'">
                            <span class="docs-tooltip" data-toggle="tooltip" title="">
                               <span class="fa fa-pencil">t</span> {{  $mode == 'edit'? 'Save' : 'Edit' }}
                            </span>
@@ -142,7 +142,7 @@
                               <thead>
                                  <tr>
                                     <th>No </th>
-                                    <th>Tarif Code </th>
+                                    <th colspan="2">Tarif Code </th>
                                     <th>Trw 1 Penjualan (MWh)</th>
                                     <th>Trw 2 Penjualan (MWh)</th>
                                     <th>Trw 3 Penjualan (MWh)</th>
@@ -167,77 +167,80 @@
                                        <input type="hidden" name="id[]" id="id" value="{{ $row['id'] }}">
                                     </td>
                                     <td>
-                                       {{ $row['tarif_code'] }}
+                                       {{ $row['tarif_code1'] }}
+                                    </td>
+                                    <td>
+                                       {{ $row['tarif_code2'] }}
                                     </td>
                                     <td class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q1_qty_mwh[]" value="{{ $row['q1_qty_mwh'] }}" onkeyup="this.value = addCommas(this.value);" >
+                                       <input type="text" class="text-right" name="q1_qty_mwh[]" value="{{ $row['pjl_q1'] }}" onkeyup="this.value = addCommas(this.value);" >
                                        @else
-                                       {{ $row['q1_qty_mwh'] }} 
+                                       {{ $row['pjl_q1'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q2_qty_mwh[]" value="{{ $row['q2_qty_mwh'] }}"  onkeyup="this.value = addCommas(this.value);" >
+                                       <input type="text" class="text-right" name="q2_qty_mwh[]" value="{{ $row['pjl_q2'] }}"  onkeyup="this.value = addCommas(this.value);" >
                                        @else
-                                       {{ $row['q2_qty_mwh'] }} 
+                                       {{ $row['pjl_q2'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q3_qty_mwh[]" value="{{ $row['q3_qty_mwh'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q3_qty_mwh[]" value="{{ $row['pjl_q3'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q3_qty_mwh'] }} 
+                                       {{ $row['pjl_q3'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q4_qty_mwh[]" value="{{ $row['q4_qty_mwh'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q4_qty_mwh[]" value="{{ $row['pjl_q4'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q4_qty_mwh'] }} 
+                                       {{ $row['pjl_q4'] }} 
                                        @endif
                                     </td>
                                     <td> 
-                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['q1_qty_mwh'] + $row['q2_qty_mwh'] + $row['q3_qty_mwh'] + $row['q4_qty_mwh']  }}">
+                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['pjl_sum']  }}">
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q1_electricity_revenue[]" value="{{ $row['q1_electricity_revenue'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q1_electricity_revenue[]" value="{{ $row['pdp_q1'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q1_electricity_revenue'] }} 
+                                       {{ $row['pdp_q1'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q2_electricity_revenue[]" value="{{ $row['q2_electricity_revenue'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q2_electricity_revenue[]" value="{{ $row['pdp_q2'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q2_electricity_revenue'] }} 
+                                       {{ $row['pdp_q2'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q3_electricity_revenue[]" value="{{ $row['q3_electricity_revenue'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q3_electricity_revenue[]" value="{{ $row['pdp_q3'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q3_electricity_revenue'] }} 
+                                       {{ $row['pdp_q3'] }} 
                                        @endif
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="q4_electricity_revenue[]" value="{{ $row['q4_electricity_revenue'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="q4_electricity_revenue[]" value="{{ $row['pdp_q4'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['q4_electricity_revenue'] }} 
+                                       {{ $row['pdp_q4'] }} 
                                        @endif
                                     </td>
                                     <td>
-                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] + $row['q1_electricity_revenue'] }}">
+                                       <input type="text" class="text-right" disabled="disabled"value="{{ $row['pdp_sum'] }}">
 
 
                                     </td>
                                     <td  class="text-right">
                                        @if($mode == 'edit')
-                                       <input type="text" class="text-right" name="harga_jual_rwh[]" value="{{ $row['harga_jual_rwh'] }}"   onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" name="harga_jual_rwh[]" value="{{ $row['selling_price'] }}"   onkeyup="this.value = addCommas(this.value);">
                                        @else
-                                       {{ $row['harga_jual_rwh'] }} 
+                                       {{ $row['selling_price'] }} 
                                        @endif
                                     </td>
                                  </tr>
