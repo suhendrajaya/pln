@@ -1,6 +1,7 @@
 <?php
 return [
-    'roleUserUnit' => [1],
-    'roleUserReviewer' => [2],
+    'roleUserAdmin' => [1],
+    'roleUserUnit' => [2],
+    'roleUserReviewer' => [3],
 ];
 

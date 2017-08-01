@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalesAddCustomer extends Model
 {
-    protected $table = 'f_sales_add_cust_input';
+    protected $table = 'PENJUALAN';
 
 //    const CREATED_AT = 'post_date';
 //    const UPDATED_AT = 'post_modified';
@@ -58,8 +58,10 @@ class SalesAddCustomer extends Model
 //        {
 //            $query->orderBy('created_at', 'desc');
 //        }
-
 //        $query->whereNull('deleted_at');
+
+        $query->orderBy('ORDER_ID', 'desc');
+        $query->orderBy('ORDER_GROUP_ID', 'desc');
 
         return $query;
     }
@@ -67,10 +69,10 @@ class SalesAddCustomer extends Model
     public static function doGet($param)
     {
         $paramBt = self::UserFilter($param);
-        $paramBt->select('f_sales_add_cust_input.*');
-        $paramBt->leftJoin('tarifs', 'LOWER(TRIM(tarifs.tarif_code))','=','LOWER(TRIM(f_sales_add_cust_input.tarif_code))');
-        $paramBt->orderBy('tarifs.order_data' , 'asc');
-        
+//        $paramBt->select('f_sales_add_cust_input.*');
+//        $paramBt->leftJoin('tarifs', 'LOWER(TRIM(tarifs.tarif_code))','=','LOWER(TRIM(f_sales_add_cust_input.tarif_code))');
+//        $paramBt->orderBy('tarifs.order_data' , 'asc');
+
         $totalRecord = $paramBt->count();
 
         if ($totalRecord > 0)

@@ -204,16 +204,14 @@
                                        <input type="hidden" name="id[]" id="id" value="{{ $row['id'] }}">
                                     </td>
                                     <td class=" ">
-                                       {{ $row['submission_status_code'] }} 
                                     </td>
                                     <td>
-                                       {{ $row['unit_code'] }} 
+                                       {{ $row['unit_id'] }} 
                                     </td>
                                     <td>
-                                       {{ $row['year_code'] }} 
+                                       {{ $row['year'] }} 
                                     </td>
                                     <td>
-                                       {{ $row['version_code'] }} 
                                     </td>
                                     <td>
                                        <button type="button" class="btn btn-default btn-sm" onclick="location.href = '{!!  route('rkau_detail', ['id' => $row['id'] ])  !!}'">
@@ -290,12 +288,6 @@
             <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
             <input type="hidden" name="urladd" value="{{ route('rkau_add') }}">
             
-            <input type="hidden" name="submission_status_code"  value="SSC1">
-            <input type="hidden" name="unit_code" value="DEPOK">
-            <input type="hidden" name="year_code" value="2017">
-            <input type="hidden" name="version_code" value="1.0">
-            <!--<input type="hidden" name="id" id="id" value="">-->
-
             <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                </button>
@@ -320,12 +312,13 @@
                      <input type="text" name="year_code" required="required" class="form-control col-md-7 col-xs-12">
                   </div>
                </div>
+-->
                <div class="form-group">
-                  <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Version code <span class="required">*</span></label>
+                  <label class="control-label col-md-2 col-sm-2 col-xs-12" for="last-name">&nbsp;</label>
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                     <input type="text" name="version_code" required="required" class="form-control col-md-7 col-xs-12">
+                     Please download template first! <a href="{{ route('rkau_down') }}" target="_blank"><b>click here</b></a>
                   </div>
-               </div>-->
+               </div>
                <div class="form-group">
                   <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Excel file <span class="required">*</span></label>
                   <div class="col-md-6 col-sm-6 col-xs-12">

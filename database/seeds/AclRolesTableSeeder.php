@@ -12,6 +12,7 @@ class AclRolesTableSeeder extends Seeder
     public function run()
     {
         DB::table('ACL_ROLES')->insert([
+            ['NAME' => 'Admin'],
             ['NAME' => 'Unit'],
             ['NAME' => 'Reviewer']
         ]);

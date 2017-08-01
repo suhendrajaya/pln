@@ -3,17 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/tasks/rkau.blade.php</file>
             <file>file:/C:/xampp/htdocs/sj/pln/app/Http/routes.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/config.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/task/rkau.js</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/app/Http/Controllers/Auth/AuthController.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/app/Model/SalesAddCustomer.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/layouts/home.blade.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/custom.js</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/app/Http/Controllers/Tasks/RkauController.php</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/js/custom.min.js</file>
-            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/views/tasks/rkau_detail.blade.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/app/Http/Controllers/Tasks/DashboardController.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/partials/header.blade.php</file>
+            <file>file:/C:/xampp/htdocs/sj/pln/public/themes/default/assets/css/table.css</file>
         </group>
     </open-files>
 </project-private>

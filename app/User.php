@@ -37,8 +37,25 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-    protected $appends = ['is_unit', 'is_reviewer'];
+    protected $appends = ['is_admin','is_unit', 'is_reviewer'];
 
+    public function getIsAdminAttribute()
+    {
+        $roleArray = AclUserRoles::where('USER_ID', $this->id)
+                ->get()->toArray();
+
+        $roleIds = array_column($roleArray, 'id');
+        
+        if (array_intersect(config('common.roleUserAdmin'), $roleIds))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     public function getIsUnitAttribute()
     {
         $roleArray = AclUserRoles::where('USER_ID', $this->id)

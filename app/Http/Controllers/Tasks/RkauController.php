@@ -79,10 +79,12 @@ class RkauController extends WebBasedController
                 'total_per_page' => 1000 //env('TOTAL_REC_PAGE', 10000)
             ];
             $resp = SalesAddCustomer::doGet($param);
-
+            echo '<pre>';
+            print_r($resp['data']);
+            exit;
             $data = [
                 'id' => 665,
-                'mode' => $req->input('mode') == 'grid'? 'grid':'edit' ,
+                'mode' => $req->input('mode') == 'grid' ? 'grid' : 'edit',
                 'user' => $this->user,
                 'list' => $resp['data'],
                 'paging' => [
@@ -126,51 +128,61 @@ class RkauController extends WebBasedController
                         "message" => "File too big. Maximum upload only 10MB"
                     );
                 }
-                $input = $req->all();
 
-                $salesAddCust = SalesAddCustomer::where('SUBMISSION_STATUS_CODE', $input['submission_status_code'])
-                    ->where('UNIT_CODE', $input['unit_code'])
-                    ->where('YEAR_CODE', $input['year_code'])
-                    ->where('VERSION_CODE', $input['version_code']);
+                $salesAddCust = SalesAddCustomer::where('UNIT_ID', $this->user->unit_id)
+                    ->where('YEAR', date('Y'));
 
                 if ($salesAddCust->count() > 0)
                 {
                     $salesAddCust->delete();
                 }
 
-                config(['excel.import.startRow' => 8]);
+                config(['excel.import.startRow' => 3]);
                 $reader = Excel::load($file, function($reader) {
                         
                     })->get();
                 $ins = [];
                 $results = $reader->toArray();
+
+//                echo '<pre>';
+//                print_r($results);
+//                exit;
                 foreach ($results as $val)
                 {
-                    $ins[] = [
-                        'GROUP_REVIEWER_CODE' => $this->user->id,
-                        'GROUP_CONTRIBUTOR_CODE' => 'code',
-                        'submission_status_code' => $input['submission_status_code'],
-                        'unit_code' => $input['unit_code'],
-                        'year_code' => $input['year_code'],
-                        'version_code' => $input['version_code'],
-                        'tarif_code' => $val['tarif_code'],
-                        'Q1_QTY_MWH' => $val['trw_1_penjualan_mwh'],
-                        'Q2_QTY_MWH' => $val['trw_2_penjualan_mwh'],
-                        'Q3_QTY_MWH' => $val['trw_3_penjualan_mwh'],
-                        'Q4_QTY_MWH' => $val['trw_4_penjualan_mwh'],
-//                            'jumlah_penjualan_mwh_rkau' => $val['trw_1_penjualan_mwh'] + $val['trw_2_penjualan_mwh'] + $val['trw_3_penjualan_mwh'] + $val['trw_4_penjualan_mwh'],
-                        'Q1_ELECTRICITY_REVENUE' => $val['trw_1_pendapatan_rp_ribu'],
-                        'Q2_ELECTRICITY_REVENUE' => $val['trw_2_pendapatan_rp_ribu'],
-                        'Q3_ELECTRICITY_REVENUE' => $val['trw_3_pendapatan_rp_ribu'],
-                        'Q4_ELECTRICITY_REVENUE' => $val['trw_4_pendapatan_rp_ribu'],
-                        'HARGA_JUAL_RWH' => $val['harga_jual_rpkwh_rkau'],
-//                            'jumlah_pendapatan_rp_ribu_rkau' => $val['Q1_ELECTRICITY_REVENUE'] + $val['Q2_ELECTRICITY_REVENUE'] + $val['Q3_ELECTRICITY_REVENUE'] + $val['Q4_ELECTRICITY_REVENUE'],
-//                            'harga_jual_rpkwh_rkau' => $val['harga_jual_rpkwh_rkau']
-                    ];
+
+                    if (is_numeric($val['a']))
+                    {
+                        $pjl_sum = $val['e'] + $val['f'] + $val['g'] + $val['h'];
+                        $pdp_sum = $val['j'] + $val['k'] + $val['l'] + $val['m'];
+                        $selling_price = ($pdp_sum > 0 && $pjl_sum > 0 ) ? $pdp_sum / $pjl_sum : 0;
+
+                        $ins[] = [
+                            'UNIT_ID' => $this->user->unit_id,
+                            'YEAR' => date('Y'),
+                            'ORDER_ID' => $val['a'],
+                            'ORDER_GROUP_ID' => $val['b'],
+                            'TARIF_CODE1' => $val['c'],
+                            'TARIF_CODE2' => $val['d'],
+                            'PJL_Q1' => $val['e'],
+                            'PJL_Q2' => $val['f'],
+                            'PJL_Q3' => $val['g'],
+                            'PJL_Q4' => $val['h'],
+                            'PJL_SUM' => $pjl_sum,
+                            'PDP_Q1' => $val['j'],
+                            'PDP_Q2' => $val['k'],
+                            'PDP_Q3' => $val['l'],
+                            'PDP_Q4' => $val['m'],
+                            'PDP_SUM' => $pdp_sum,
+                            'SELLING_PRICE' => $selling_price,
+                            'UPLOADBY_ID' => $this->user->id,
+                            'UPLOADBY_NAME' => $this->user->name,
+                            'CREATED_AT' => date('Y-m-d G:i:s'),
+                            'UPDATED_AT' => date('Y-m-d G:i:s'),
+                        ];
+                    }
                 }
 
                 $rsInsert = SalesAddCustomer::insert($ins);
-
 
                 return array(
                     "code" => "200",
@@ -231,6 +243,18 @@ class RkauController extends WebBasedController
         {
             json_encode('Caught exception: ', $ex->getMessage(), "\n");
         }
+    }
+
+    public function getDownload()
+    {
+        //PDF file is stored under project/public/download/info.pdf
+        $file = public_path() . "/files/penjualan.xlsx";
+
+//        $headers = array(
+//            'Content-Type: application/octet-stream',
+//        );
+
+        return Response()->download($file, 'penjualan.xlsx');
     }
 
 }

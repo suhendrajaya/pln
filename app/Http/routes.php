@@ -27,7 +27,7 @@ Route::post('auth/register', ['as' => 'auth-register', 'uses' => 'Auth\AuthContr
 
 //
 Route::group(['namespace' => 'Pln'], function() {
-    Route::get('/', ['as' => 'homepage' , 'uses' => 'WebController@login']);
+    Route::get('/', ['as' => 'homepage', 'uses' => 'WebController@login']);
     Route::get('/home', ['as' => 'home-page', 'uses' => 'WebController@home']);
 //   Route::post('/do-login', ['as' => 'do-login', 'uses' => 'LoginController@doLogin']);
 //   Route::get('/logout', ['as' => 'logout-page', 'uses' => 'LoginController@logout']);
@@ -36,16 +36,17 @@ Route::group(['namespace' => 'Pln'], function() {
 //Route::group(['prefix' => 'tasks/', 'namespace' => 'Tasks'], function () {
 Route::group(['prefix' => 'tasks/', 'middleware' => ['auth'], 'namespace' => 'Tasks'], function () {
     Route::get('dashboard', ['as' => 'dashboard_page', 'uses' => 'DashboardController@index']);
-    
+
     Route::get('/', ['as' => 'user_page', 'uses' => 'UsersController@index']);
     Route::post('user/add', 'UsersController@doAdd');
     Route::post('user/edit', 'UsersController@doEdit');
     Route::post('user/delete', 'UsersController@doDelete');
 
     Route::get('rkau', ['as' => 'rkau_page', 'uses' => 'RkauController@index']);
-    Route::post('rkau/add',['as' => 'rkau_add', 'uses' => 'RkauController@doAdd'] );
-    Route::post('rkau/save',['as' => 'rkau_save', 'uses' => 'RkauController@doSave'] );
-    Route::get('rkau/detail/{id}',['as' => 'rkau_detail', 'uses' => 'RkauController@detailById'] );
+    Route::post('rkau/add', ['as' => 'rkau_add', 'uses' => 'RkauController@doAdd']);
+    Route::post('rkau/save', ['as' => 'rkau_save', 'uses' => 'RkauController@doSave']);
+    Route::get('rkau/detail/{id}', ['as' => 'rkau_detail', 'uses' => 'RkauController@detailById']);
+    Route::get('rkau/download', ['as' => 'rkau_down', 'uses' => 'RkauController@getDownload']);
 });
 
 Route::get('test', function() {
