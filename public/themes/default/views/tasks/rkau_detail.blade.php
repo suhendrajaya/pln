@@ -160,6 +160,7 @@
                                  </tr>
                                  <tr>
 
+                                    <!--<th>No</th>-->
                                     <th colspan="2">a </th>
                                     <th> b</th>
                                     <th> c</th>
@@ -179,9 +180,21 @@
                                  @if(count($list))
                                  <?php $i = $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) ?>
                                  @foreach($list as $row)
+
+                                 @if(empty($row['tarif_code1']) && empty($row['tarif_code2']))
+
                                  <tr class="even pointer">
-                                    <!--<td style="text-align: center;">-->
-                                    <!--</td>-->
+                                    
+                                    <td colspan="14">
+                                       &nbsp;
+                                    </td>
+                                 </tr>
+
+                                 @else
+                                 <tr class="even pointer">
+<!--                                    <td style="text-align: center;">
+                                       {{ $i }}
+                                    </td>-->
                                     <td width="100">
                                        <input type="hidden" name="id[]" id="id" value="{{ $row['id'] }}">
                                        {{ $row['tarif_code1'] }}
@@ -191,49 +204,51 @@
                                     </td>
                                     <td class="text-right">
 
-                                       <input type="text" class="text-right" id="{{ 'b-'.$i }}" name="pjl_q1[]" value="{{ number_format($row['pjl_q1']) }}" {{ $row['tarif_code1']=='S' ? 'readonly="readonly"':'' }}  style="width: 95px" onkeyup="this.value = addCommas(this.value);" >
+                                       <input type="text" class="text-right" id="{{ 'b-'.$i }}" name="pjl_q1[]" value="{{ number_format($row['pjl_q1']) }}" {{ $row['tarif_code1']=='S' ? 'readonly="readonly"':'' }}  style="width: 95px" onkeyup="generateSum(this)" >
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="{{ 'c-'.$i }}"name="pjl_q2[]" value="{{ number_format($row['pjl_q2']) }}"  style="width: 95px" onkeyup="addCommas(this);" >
+                                       <input type="text" class="text-right" id="{{ 'c-'.$i }}"name="pjl_q2[]" value="{{ number_format($row['pjl_q2']) }}"  style="width: 95px" onkeyup="generateSum(this);" >
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="{{ 'd-'.$i }}"name="pjl_q3[]" value="{{ number_format($row['pjl_q3']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'd-'.$i }}"name="pjl_q3[]" value="{{ number_format($row['pjl_q3']) }}"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="{{ 'e-'.$i }}"name="pjl_q4[]" value="{{ number_format($row['pjl_q4']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'e-'.$i }}"name="pjl_q4[]" value="{{ number_format($row['pjl_q4']) }}"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td> 
-                                       <input type="text" class="text-right" id="{{ 'f-'.$i }}"name="pjl_sum[]" value="{{ number_format($row['pjl_sum']) }}" style="width: 95px" readonly="readonly">
+                                       <input type="text" class="text-right" id="{{ 'f-'.$i }}" name="pjl_sum[]" value="{{ number_format($row['pjl_sum']) }}" style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q1[]" value="{{ number_format($row['pdp_q1']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'g-'.$i }}" name="pdp_q1[]" value="{{ number_format($row['pdp_q1']) }}"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q2[]" value="{{ number_format($row['pdp_q2']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'h-'.$i }}" name="pdp_q2[]" value="{{ number_format($row['pdp_q2']) }}"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q3[]" value="{{ number_format($row['pdp_q3']) }}"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'i-'.$i }}" name="pdp_q3[]" value="{{ number_format($row['pdp_q3']) }}"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q4[]" value="{{ number_format($row['pdp_q4']) }}"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="{{ 'j-'.$i }}" name="pdp_q4[]" value="{{ number_format($row['pdp_q4']) }}"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td>
-                                       <input type="text" class="text-right" name="pdp_sum[]" value="{{ number_format($row['pdp_sum']) }}"  style="width: 95px" readonly="readonly">
+                                       <input type="text" class="text-right" id="{{ 'k-'.$i }}" name="pdp_sum[]" value="{{ number_format($row['pdp_sum']) }}"  style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="selling_price[]"  value="{{ number_format($row['selling_price']) }}" style="width: 95px"  onkeyup="this.value = addCommas(this.value);" readonly="readonly">
+                                       <input type="text" class="text-right" id="{{ 'l-'.$i }}" name="selling_price[]"  value="{{ number_format($row['selling_price']) }}" style="width: 95px"  readonly="readonly">
 
                                     </td>
                                  </tr>
-                                    <?php $i++ ?> 
+                                 @endif
+
+                                 <?php $i++ ?> 
 
                                  @endforeach
                                  @else

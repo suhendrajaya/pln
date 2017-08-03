@@ -160,6 +160,7 @@
                                  </tr>
                                  <tr>
 
+                                    <!--<th>No</th>-->
                                     <th colspan="2">a </th>
                                     <th> b</th>
                                     <th> c</th>
@@ -179,9 +180,22 @@
                                  <?php if(count($list)): ?>
                                  <?php $i = $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) ?>
                                  <?php foreach($list as $row): ?>
+
+                                 <?php if(empty($row['tarif_code1']) && empty($row['tarif_code2'])): ?>
+
                                  <tr class="even pointer">
-                                    <!--<td style="text-align: center;">-->
-                                    <!--</td>-->
+                                    
+                                    <td colspan="14">
+                                       &nbsp;
+                                    </td>
+                                 </tr>
+
+                                 <?php else: ?>
+                                 <tr class="even pointer">
+<!--                                    <td style="text-align: center;">
+                                       <?php echo e($i); ?>
+
+                                    </td>-->
                                     <td width="100">
                                        <input type="hidden" name="id[]" id="id" value="<?php echo e($row['id']); ?>">
                                        <?php echo e($row['tarif_code1']); ?>
@@ -193,49 +207,51 @@
                                     </td>
                                     <td class="text-right">
 
-                                       <input type="text" class="text-right" id="<?php echo e('b-'.$i); ?>" name="pjl_q1[]" value="<?php echo e(number_format($row['pjl_q1'])); ?>" <?php echo e($row['tarif_code1']=='S' ? 'readonly="readonly"':''); ?>  style="width: 95px" onkeyup="this.value = addCommas(this.value);" >
+                                       <input type="text" class="text-right" id="<?php echo e('b-'.$i); ?>" name="pjl_q1[]" value="<?php echo e(number_format($row['pjl_q1'])); ?>" <?php echo e($row['tarif_code1']=='S' ? 'readonly="readonly"':''); ?>  style="width: 95px" onkeyup="generateSum(this)" >
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('c-'.$i); ?>"name="pjl_q2[]" value="<?php echo e(number_format($row['pjl_q2'])); ?>"  style="width: 95px" onkeyup="addCommas(this);" >
+                                       <input type="text" class="text-right" id="<?php echo e('c-'.$i); ?>"name="pjl_q2[]" value="<?php echo e(number_format($row['pjl_q2'])); ?>"  style="width: 95px" onkeyup="generateSum(this);" >
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('d-'.$i); ?>"name="pjl_q3[]" value="<?php echo e(number_format($row['pjl_q3'])); ?>"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('d-'.$i); ?>"name="pjl_q3[]" value="<?php echo e(number_format($row['pjl_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('e-'.$i); ?>"name="pjl_q4[]" value="<?php echo e(number_format($row['pjl_q4'])); ?>"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('e-'.$i); ?>"name="pjl_q4[]" value="<?php echo e(number_format($row['pjl_q4'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td> 
-                                       <input type="text" class="text-right" id="<?php echo e('f-'.$i); ?>"name="pjl_sum[]" value="<?php echo e(number_format($row['pjl_sum'])); ?>" style="width: 95px" readonly="readonly">
+                                       <input type="text" class="text-right" id="<?php echo e('f-'.$i); ?>" name="pjl_sum[]" value="<?php echo e(number_format($row['pjl_sum'])); ?>" style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q1[]" value="<?php echo e(number_format($row['pdp_q1'])); ?>"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('g-'.$i); ?>" name="pdp_q1[]" value="<?php echo e(number_format($row['pdp_q1'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q2[]" value="<?php echo e(number_format($row['pdp_q2'])); ?>"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('h-'.$i); ?>" name="pdp_q2[]" value="<?php echo e(number_format($row['pdp_q2'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q3[]" value="<?php echo e(number_format($row['pdp_q3'])); ?>"  style="width: 95px"  onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('i-'.$i); ?>" name="pdp_q3[]" value="<?php echo e(number_format($row['pdp_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="pdp_q4[]" value="<?php echo e(number_format($row['pdp_q4'])); ?>"   style="width: 95px" onkeyup="this.value = addCommas(this.value);">
+                                       <input type="text" class="text-right" id="<?php echo e('j-'.$i); ?>" name="pdp_q4[]" value="<?php echo e(number_format($row['pdp_q4'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
                                     </td>
                                     <td>
-                                       <input type="text" class="text-right" name="pdp_sum[]" value="<?php echo e(number_format($row['pdp_sum'])); ?>"  style="width: 95px" readonly="readonly">
+                                       <input type="text" class="text-right" id="<?php echo e('k-'.$i); ?>" name="pdp_sum[]" value="<?php echo e(number_format($row['pdp_sum'])); ?>"  style="width: 95px" readonly="readonly">
                                     </td>
                                     <td  class="text-right">
-                                       <input type="text" class="text-right" name="selling_price[]"  value="<?php echo e(number_format($row['selling_price'])); ?>" style="width: 95px"  onkeyup="this.value = addCommas(this.value);" readonly="readonly">
+                                       <input type="text" class="text-right" id="<?php echo e('l-'.$i); ?>" name="selling_price[]"  value="<?php echo e(number_format($row['selling_price'])); ?>" style="width: 95px"  readonly="readonly">
 
                                     </td>
                                  </tr>
-                                    <?php $i++ ?> 
+                                 <?php endif; ?>
+
+                                 <?php $i++ ?> 
 
                                  <?php endforeach; ?>
                                  <?php else: ?>
