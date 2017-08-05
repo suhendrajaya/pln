@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitTable extends Migration
+class CreateUnitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateUnitTable extends Migration
      */
     public function up()
     {
-        Schema::create('UNIT', function (Blueprint $table) {
+        Schema::create('UNITS', function (Blueprint $table) {
             $table->increments('ID');
             $table->char('CODE',5)->unique();
             $table->char('DIVISION_CODE',5);
@@ -29,7 +29,7 @@ class CreateUnitTable extends Migration
      */
     public function down()
     {
-        Schema::drop('UNIT');
+        Schema::drop('UNITS');
     }
 
 }

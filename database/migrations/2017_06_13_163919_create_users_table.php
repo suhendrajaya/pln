@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('PASSWORD', 60);
             $table->date('BIRTH_DATE')->nullable();
             $table->char('IS_ACTIVED', 1)->nullable();
-            $table->integer('UNIT_ID');
+            $table->char('UNIT_CODE',5);
             $table->integer('REGIONAL_ID')->nullable();
             $table->rememberToken();
             $table->nullableTimestamps();

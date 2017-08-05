@@ -44,6 +44,10 @@ class SalesAddCustomer extends Model
                         $query->where('status', '=', $val);
                     }
                 }
+                else
+                {
+                    $query->where($key, '=', $val);
+                }
             }
         }
 

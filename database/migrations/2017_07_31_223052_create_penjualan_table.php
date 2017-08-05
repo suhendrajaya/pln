@@ -15,7 +15,7 @@ class CreatePenjualanTable extends Migration
         Schema::create('REKAPITULASI_PENJUALAN', function (Blueprint $table) {
             $table->increments('ID');
             $table->integer('ORDER_ID');
-            $table->integer('UNIT_ID');
+            $table->char('UNIT_CODE',5);
             $table->integer('YEAR');
             $table->string('TARIF_CODE1', 32)->nullable();
             $table->string('TARIF_CODE2', 32)->nullable();
@@ -43,7 +43,7 @@ class CreatePenjualanTable extends Migration
      */
     public function down()
     {
-        Schema::drop('PENJUALAN');
+        Schema::drop('REKAPITULASI_PENJUALAN');
     }
 
 }

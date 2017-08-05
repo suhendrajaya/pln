@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'NAME' => 'admin',
             'EMAIL' => 'suhendrajaya@gmail.com',
             'PASSWORD' => bcrypt('admin'),
-            'UNIT_ID' => 1,
+            'UNIT_CODE' => '4A00',
             'IS_ACTIVED' => 1
         ]);
     }

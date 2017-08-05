@@ -39,11 +39,11 @@
 
 
                      <div class="well" style="overflow: auto">
-                        <form class="form-inline">
+                        <form class="form-inline" method="get" action="{{ route('rkau_page')}}">
                            <div class="form-group">
                               <label>Semxam</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
+                                 <select  class="form-control" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -54,7 +54,7 @@
                            <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
                               <label>Columns</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
+                                 <select  class="form-control"  style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -65,7 +65,18 @@
                            <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
                               <label>Context</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
+                                 <select  class="form-control" name="unit_code" style="width: 130px">
+                                    <option value="">Pilih Unit</option>
+                                    @foreach( $units as $val )
+                                    <option value="{{ $val->code }}">{{ $val->name }}</option>
+                                    @endforeach
+                                 </select>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <label>&nbsp;</label><br>
+                              <div class="input-prepend input-group">
+                                 <select  class="form-control" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -76,7 +87,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
+                                 <select  class="form-control" style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -87,7 +98,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
+                                 <select  class="form-control"  style="width: 130px">
                                     <option value="">Sales Tarif</option>
                                     <option value="press">Press</option>
                                     <option value="net">Internet</option>
@@ -98,18 +109,7 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" required="" style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <label>&nbsp;</label><br>
-                              <div class="input-prepend input-group">
-                                 <button type="button" class="btn btn-sm btn-primary">Search</button>
+                                 <button type="submit" class="btn btn-sm btn-primary">Search</button>
                               </div>
                            </div>
                            <div class="form-group" style="margin-left: 75px;border-left: #ccc dotted 1px;padding-left: 10px;margin-bottom: 12px;">
@@ -184,7 +184,7 @@
                                  @if(empty($row['tarif_code1']) && empty($row['tarif_code2']))
 
                                  <tr class="even pointer">
-                                    
+
                                     <td colspan="14">
                                        &nbsp;
                                     </td>
@@ -253,7 +253,7 @@
                                  @endforeach
                                  @else
                                  <tr>
-                                    <td colspan="7"><p>No data found.</p></td>
+                                    <td colspan="14"><p>No data found.</p></td>
                                  </tr>
                                  @endif
 

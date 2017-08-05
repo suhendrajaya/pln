@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tasks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Tasks\WebBasedController;
 use App\Model\Users;
+use App\Model\Units;
 use App\Model\SalesAddCustomer;
 use Auth;
 use Excel;
@@ -36,6 +37,9 @@ class RkauController extends WebBasedController
                 'cur_page' => $pageNo,
                 'total_per_page' => 100
             ];
+            if ($req->input('unit_code'))
+                $param['search_term']['unit_code'] = $req->input('unit_code');
+
             $resp = SalesAddCustomer::doGet($param);
 
 //            echo '<pre>';
@@ -46,6 +50,7 @@ class RkauController extends WebBasedController
                 'mode' => $req->input('mode'),
                 'user' => $this->user,
                 'list' => $resp['data'],
+                'units' => Units::all(),
                 'paging' => [
                     'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
                     'totalPage' => @$resp['meta']['totalPage'],
@@ -132,7 +137,7 @@ class RkauController extends WebBasedController
                     );
                 }
 
-                $salesAddCust = SalesAddCustomer::where('UNIT_ID', $this->user->unit_id)
+                $salesAddCust = SalesAddCustomer::where('UNIT_CODE', $this->user->unit_code)
                     ->where('YEAR', date('Y'));
 
                 if ($salesAddCust->count() > 0)
@@ -159,7 +164,7 @@ class RkauController extends WebBasedController
                     if (is_numeric($val['a']))
                     {
                         $ins[] = [
-                            'UNIT_ID' => $this->user->unit_id,
+                            'UNIT_CODE' => $this->user->unit_code,
                             'YEAR' => date('Y'),
                             'ORDER_ID' => $val['a'],
                             'TARIF_CODE1' => $val['c'],
