@@ -12,9 +12,9 @@ class CreateAclRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('acl_roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name', 32);
+        Schema::create('ACL_ROLES', function (Blueprint $table) {
+            $table->increments('ID');
+            $table->string('NAME', 32);
             $table->nullableTimestamps();
         });
     }

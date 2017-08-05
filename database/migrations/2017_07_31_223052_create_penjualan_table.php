@@ -12,7 +12,7 @@ class CreatePenjualanTable extends Migration
      */
     public function up()
     {
-        Schema::create('PENJUALAN', function (Blueprint $table) {
+        Schema::create('REKAPITULASI_PENJUALAN', function (Blueprint $table) {
             $table->increments('ID');
             $table->integer('ORDER_ID');
             $table->integer('UNIT_ID');

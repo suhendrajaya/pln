@@ -12,10 +12,10 @@ class CrateAclUserRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('acl_user_roles', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('role_id');
+        Schema::create('ACL_USER_ROLES', function (Blueprint $table) {
+            $table->increments('ID');
+            $table->integer('USER_ID');
+            $table->integer('ROLE_ID');
             $table->nullableTimestamps();
         });
     }

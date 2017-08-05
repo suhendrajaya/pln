@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class SalesAddCustomer extends Model
 {
-    protected $table = 'PENJUALAN';
+    protected $table = 'REKAPITULASI_PENJUALAN';
 
 //    const CREATED_AT = 'post_date';
 //    const UPDATED_AT = 'post_modified';
