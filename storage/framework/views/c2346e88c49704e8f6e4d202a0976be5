@@ -43,22 +43,22 @@
                            <div class="form-group">
                               <label>Semxam</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
+                                 <select  class="form-control" name="uploadby_id" style="width: 130px">
+                                    <option value="">Pilih User</option>
+                                    <?php foreach( $users as $val ): ?>
+                                    <option value="<?php echo e(trim($val->id)); ?>" <?php echo e($val->id == $search['uploadby_id']? 'selected="selected"':''); ?> ><?php echo e($val->name); ?></option>
+                                    <?php endforeach; ?>
                                  </select>
                               </div>
                            </div>
                            <div class="form-group" style="margin-left: 5px;border-left: #ccc dotted 1px;padding-left: 10px;">
                               <label>Columns</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control"  style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
+                                 <select  class="form-control" name="tarif_code"  style="width: 130px">
+                                    <option value="">Pilih Tarif</option>
+                                    <?php foreach( $tarifs as $val ): ?>
+                                    <option value="<?php echo e(trim($val->tarif_code)); ?>" <?php echo e($val->tarif_code == $search['tarif_code']? 'selected="selected"':''); ?>><?php echo e($val->tarif_name); ?></option>
+                                    <?php endforeach; ?>
                                  </select>
                               </div>
                            </div>
@@ -68,7 +68,7 @@
                                  <select  class="form-control" name="unit_code" style="width: 130px">
                                     <option value="">Pilih Unit</option>
                                     <?php foreach( $units as $val ): ?>
-                                    <option value="<?php echo e($val->code); ?>"><?php echo e($val->name); ?></option>
+                                    <option value="<?php echo e(trim($val->code)); ?>" <?php echo e($val->code == $search['unit_code']? 'selected="selected"':''); ?>><?php echo e($val->name); ?></option>
                                     <?php endforeach; ?>
                                  </select>
                               </div>
@@ -76,46 +76,46 @@
                            <div class="form-group">
                               <label>&nbsp;</label><br>
                               <div class="input-prepend input-group">
-                                 <select  class="form-control" style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="form-group">
+                                 <select  class="form-control" name="year" style="width: 130px">
+                                    <option value="">Pilih Tahun</option>
+                                    <?php for($i = 2017; $i < 2019; $i++): ?>
+                                    <option value="<?php echo e($i); ?>" <?php echo e($i == $search['year']? 'selected="selected"':''); ?> ><?php echo e($i); ?></option>
+                           <?php endfor; ?>
+                           </select>
+                     </div>
+                  </div>
+                  <!--                                      <div class="form-group">
+                                                                        <label>&nbsp;</label><b                                                         r>
+                                                <div class="input-p                                                            repend input-group">
+                                                   <select  class="form-control" styl                                                      e="width: 130px">
+                                                      <o                                                      ption value="">Sales Tarif</option>
+                                                                                           <option value="press">Press</option>
+                                                                          <option value="net">Internet</option>
+                                                      <option value="mouth">Word of mouth  2</option>
+                                                   </select>
+                                                                </div>
+                   </div>-->
+                                                  <!--                           <div clas                                                s="form-group">
+                                                <label                                                   >&nbsp;</label><br>
+                                                <div class="input-prepend input-group">
+                                                   <select  class="form-control"  style="width: 130px">
+            <option valu                                                      e="">Sales Tarif</option>
+            <option value="press">Press</option>                                                      
+            <option value="net">Internet</option>
+            <option va                                                      lue="mouth">Word of mouth  2</option>
+            </select>
+                                                                    </div>
+</div>-->
+                           <div class="form-group">                  
                               <label>&nbsp;</label><br>
-                              <div class="input-prepend input-group">
-                                 <select  class="form-control" style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <label>&nbsp;</label><br>
-                              <div class="input-prepend input-group">
-                                 <select  class="form-control"  style="width: 130px">
-                                    <option value="">Sales Tarif</option>
-                                    <option value="press">Press</option>
-                                    <option value="net">Internet</option>
-                                    <option value="mouth">Word of mouth  2</option>
-                                 </select>
-                              </div>
-                           </div>
-                           <div class="form-group">
-                              <label>&nbsp;</label><br>
-                              <div class="input-prepend input-group">
+                             <div class="input-prepend input-group">
                                  <button type="submit" class="btn btn-sm btn-primary">Search</button>
                               </div>
                            </div>
                            <div class="form-group" style="margin-left: 75px;border-left: #ccc dotted 1px;padding-left: 10px;margin-bottom: 12px;">
-                              <label>Action</label><br>
+                  <label>Action</label><br>
                               <!--<div class="btn-group">-->
-                              <button type="button" id="doAdd" class="btn btn-sm btn-success">
+                              <button type="button" id="doAdd"       class="btn btn-sm btn-success">
                                  <span class="docs-tooltip" data-toggle="tooltip" title="">
                                     <span class="fa fa-plus-circle"></span> Add
                                  </span>
@@ -123,13 +123,13 @@
                               <button type="button"  class="btn btn-primary btn-sm" id="saveRkau">
                                  <span class="docs-tooltip" data-toggle="tooltip" title="">
                                     <span class="fa fa-pencil"></span> Save
-                                 </span>
+                     </span>
                               </button>
-                              <!--
-                                                      <button type="button" id="doDel" class="btn btn-success">
+                  <!--
+                   <button type="button" id="doDel" class="btn btn-success">
                                                          <span class="docs-tooltip" data-toggle="tooltip" title="">
                                                             <span class="fa fa-trash"></span> Delete
-                                                         </span>
+         </span>
                                                       </button>-->
                               <!--</div>-->
                            </div>
@@ -139,160 +139,160 @@
                      <div class="clearfix"></div>
                      <div class="table-responsive" style="overflow-y: hidden;">
                         <form id="myFormRkauedit" method="post" class="form-horizontal form-label-left">
-                           <input type="hidden" name="urlsaverkausuccess"  value="<?php echo route('rkau_page', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>">
+                     <input type="hidden" name="urlsaverkausuccess"  value="<?php echo route('rkau_page', ['mode' => 'grid' ,  'page'=> $paging['pageNo'], 'sort'=>'', 'rp'=>'' ]); ?>">
                            <input type="hidden" name="urlsaverkau"  value="<?php echo e(route('rkau_save')); ?>">
-                           <input type="hidden" name="_token" id="token" value="<?php echo e(csrf_token()); ?>">
-                           <table class="table-style-form">
-                              <thead>
-                                 <tr>
-                                    <th colspan="2">Tarif Code </th>
-                                    <th>Trw 1 Penjualan (MWh)</th>
-                                    <th>Trw 2 Penjualan (MWh)</th>
-                                    <th>Trw 3 Penjualan (MWh)</th>
-                                    <th>Trw 4 Penjualan (MWh)</th>
-                                    <th>Jumlah Penjualan (MWh) RKAU</th>
-                                    <th>Trw 1 Pendapatan (Rp  Ribu)</th>
-                                    <th>Trw 2 Pendapatan (Rp  Ribu)</th>
-                                    <th>Trw 3 Pendapatan (Rp  Ribu)</th>
-                                    <th>Trw 4 Pendapatan (Rp  Ribu)</th>
-                                    <th>Jumlah Pendapatan (Rp  Ribu) RKAU</th>
-                                    <th>Harga Jual (Rp/kWh) RKAU</th>
-                                 </tr>
-                                 <tr>
+                         <input type="hidden" name="_token" id="token" value="<?php echo e(csrf_token()); ?>">
+                         <table class="table-style-form">
+                            <thead>
+                               <tr>
+                                  <th colspan="2">Tarif Code </th>
+                                  <th>Trw 1 Penjualan (MWh)</th>
+                                  <th>Trw 2 Penjualan (MWh)</th>
+                                  <th>Trw 3 Penjualan (MWh)</th>
+                                  <th>Trw 4 Penjualan (MWh)</th>
+                                  <th>Jumlah Penjualan (MWh) RKAU</th>
+                                  <th>Trw 1 Pendapatan (Rp  Ribu)</th>
+                                  <th>Trw 2 Pendapatan (Rp  Ribu)</th>
+                                  <th>Trw 3 Pendapatan (Rp  Ribu)</th>
+                                  <th>Trw 4 Pendapatan (Rp  Ribu)</th>
+                                  <th>Jumlah Pendapatan (Rp  Ribu) RKAU</th>
+                                  <th>Harga Jual (Rp/kWh) RKAU</th>
+                               </tr>
+                               <tr>
 
                                     <!--<th>No</th>-->
-                                    <th colspan="2">a </th>
-                                    <th> b</th>
-                                    <th> c</th>
-                                    <th> d</th>
-                                    <th> e</th>
-                                    <th>f=b+c+d+e</th>
-                                    <th>g</th>
-                                    <th>h</th>
-                                    <th>i</th>
-                                    <th>j</th>
-                                    <th> k=g+h+i+j </th>
-                                    <th> l=k/f </th>
-                                 </tr>
-                              </thead>
+                                  <th colspan="2">a </th>
+                                  <th> b</th>
+                                  <th> c</th>
+                                  <th> d</th>
+                                  <th> e</th>
+                                  <th>f=b+c+d+e</th>
+                                  <th>g</th>
+                                  <th>h</th>
+                                  <th>i</th>
+                                  <th>j</th>
+                                  <th> k=g+h+i+j </th>
+                                  <th> l=k/f </th>
+                               </tr>
+                            </thead>
 
-                              <tbody>
-                                 <?php if(count($list)): ?>
-                                 <?php $i = $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) ?>
-                                 <?php foreach($list as $row): ?>
+                            <tbody>
+                               <?php if(count($list)): ?>
+                               <?php $i = $paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) ) ?>
+                               <?php foreach($list as $row): ?>
 
-                                 <?php if(empty($row['tarif_code1']) && empty($row['tarif_code2'])): ?>
+                               <?php if(empty($row['tarif_code1']) && empty($row['tarif_code2'])): ?>
 
-                                 <tr class="even pointer">
+                               <tr class="even pointer">
 
-                                    <td colspan="14">
-                                       &nbsp;
-                                    </td>
-                                 </tr>
+                                  <td colspan="14">
+                                     &nbsp;
+                                  </td>
+                               </tr>
 
-                                 <?php else: ?>
-                                 <tr class="even pointer">
+                               <?php else: ?>
+                               <tr class="even pointer">
 <!--                                    <td style="text-align: center;">
-                                       <?php echo e($i); ?>
+                                     <?php echo e($i); ?>
 
-                                    </td>-->
-                                    <td width="100">
-                                       <input type="hidden" name="id[]" id="id" value="<?php echo e($row['id']); ?>">
-                                       <?php echo e($row['tarif_code1']); ?>
+                                  </td>-->
+                                  <td width="100">
+                                     <input type="hidden" name="id[]" id="id" value="<?php echo e($row['id']); ?>">
+                                     <?php echo e($row['tarif_code1']); ?>
 
-                                    </td>
-                                    <td width="150">
-                                       <?php echo e($row['tarif_code2']); ?>
+                                  </td>
+                                  <td width="150">
+                                     <?php echo e($row['tarif_code2']); ?>
 
-                                    </td>
-                                    <td class="text-right">
+                                  </td>
+                                  <td class="text-right">
 
-                                       <input type="text" class="text-right" id="<?php echo e('b-'.$i); ?>" name="pjl_q1[]" value="<?php echo e(number_format($row['pjl_q1'])); ?>" <?php echo e($row['tarif_code1']=='S' ? 'readonly="readonly"':''); ?>  style="width: 95px" onkeyup="generateSum(this)" >
+                                     <input type="text" class="text-right" id="<?php echo e('b-'.$i); ?>" name="pjl_q1[]" value="<?php echo e(number_format($row['pjl_q1'])); ?>" <?php echo e($row['tarif_code1']=='S' ? 'readonly="readonly"':''); ?>  style="width: 95px" onkeyup="generateSum(this)" >
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('c-'.$i); ?>"name="pjl_q2[]" value="<?php echo e(number_format($row['pjl_q2'])); ?>"  style="width: 95px" onkeyup="generateSum(this);" >
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('c-'.$i); ?>"name="pjl_q2[]" value="<?php echo e(number_format($row['pjl_q2'])); ?>"  style="width: 95px" onkeyup="generateSum(this);" >
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('d-'.$i); ?>"name="pjl_q3[]" value="<?php echo e(number_format($row['pjl_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('d-'.$i); ?>"name="pjl_q3[]" value="<?php echo e(number_format($row['pjl_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('e-'.$i); ?>"name="pjl_q4[]" value="<?php echo e(number_format($row['pjl_q4'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('e-'.$i); ?>"name="pjl_q4[]" value="<?php echo e(number_format($row['pjl_q4'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td> 
-                                       <input type="text" class="text-right" id="<?php echo e('f-'.$i); ?>" name="pjl_sum[]" value="<?php echo e(number_format($row['pjl_sum'])); ?>" style="width: 95px" readonly="readonly">
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('g-'.$i); ?>" name="pdp_q1[]" value="<?php echo e(number_format($row['pdp_q1'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
+                                  </td>
+                                  <td> 
+                                     <input type="text" class="text-right" id="<?php echo e('f-'.$i); ?>" name="pjl_sum[]" value="<?php echo e(number_format($row['pjl_sum'])); ?>" style="width: 95px" readonly="readonly">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('g-'.$i); ?>" name="pdp_q1[]" value="<?php echo e(number_format($row['pdp_q1'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('h-'.$i); ?>" name="pdp_q2[]" value="<?php echo e(number_format($row['pdp_q2'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('h-'.$i); ?>" name="pdp_q2[]" value="<?php echo e(number_format($row['pdp_q2'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('i-'.$i); ?>" name="pdp_q3[]" value="<?php echo e(number_format($row['pdp_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('i-'.$i); ?>" name="pdp_q3[]" value="<?php echo e(number_format($row['pdp_q3'])); ?>"  style="width: 95px"  onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('j-'.$i); ?>" name="pdp_q4[]" value="<?php echo e(number_format($row['pdp_q4'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('j-'.$i); ?>" name="pdp_q4[]" value="<?php echo e(number_format($row['pdp_q4'])); ?>"   style="width: 95px" onkeyup="generateSum(this)">
 
-                                    </td>
-                                    <td>
-                                       <input type="text" class="text-right" id="<?php echo e('k-'.$i); ?>" name="pdp_sum[]" value="<?php echo e(number_format($row['pdp_sum'])); ?>"  style="width: 95px" readonly="readonly">
-                                    </td>
-                                    <td  class="text-right">
-                                       <input type="text" class="text-right" id="<?php echo e('l-'.$i); ?>" name="selling_price[]"  value="<?php echo e(number_format($row['selling_price'])); ?>" style="width: 95px"  readonly="readonly">
+                                  </td>
+                                  <td>
+                                     <input type="text" class="text-right" id="<?php echo e('k-'.$i); ?>" name="pdp_sum[]" value="<?php echo e(number_format($row['pdp_sum'])); ?>"  style="width: 95px" readonly="readonly">
+                                  </td>
+                                  <td  class="text-right">
+                                     <input type="text" class="text-right" id="<?php echo e('l-'.$i); ?>" name="selling_price[]"  value="<?php echo e(number_format($row['selling_price'])); ?>" style="width: 95px"  readonly="readonly">
 
-                                    </td>
-                                 </tr>
-                                 <?php endif; ?>
+                                  </td>
+                               </tr>
+                               <?php endif; ?>
 
-                                 <?php $i++ ?> 
+                               <?php $i++ ?> 
 
-                                 <?php endforeach; ?>
-                                 <?php else: ?>
-                                 <tr>
-                                    <td colspan="14"><p>No data found.</p></td>
-                                 </tr>
-                                 <?php endif; ?>
+                               <?php endforeach; ?>
+                               <?php else: ?>
+                               <tr>
+                                  <td colspan="14"><p>No data found.</p></td>
+                               </tr>
+                               <?php endif; ?>
 
-                              </tbody>
-                           </table>
-                        </form>
-                     </div>
-
-                     <!--                     <div class="row">
-                                             <div class="col-sm-5">
-                                                <div class="pull-left">
-                                                   <input type="hidden" id="maxpage" value="<?php echo e($paging['totalPage']); ?>" />
-                                                   <input type="hidden" id="jumptopageinput" value="<?php echo e(route('rkau_page')); ?>" />
-                                                   Showing <?php echo e($paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) )); ?> 
-                                                   to <?php echo e($paging['pageNo']  == $paging['totalPage'] ? $paging['totalRec'] : $paging['pageNo'] * $paging['totalPerPage']); ?> 
-                                                   of <?php echo e($paging['totalRec']); ?> entries</div>
-                     
-                                             </div>
-                                             <div class="col-sm-7">
-                     
-                                                <?php if(count($list)): ?>
-                                                <div class="btn-group  pull-right">
-                                                   <a class="btn btn-default btn-sm <?php echo $paging['pageNo'] == 1 ? 'disabled' : ''; ?>" id="btn_prevpage" href="<?php echo $paging['pageNo'] == 1 ? '#' : route('rkau_page', [ 'mode' => $mode, 'page'=>($paging['pageNo']-1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>"><span class="fa fa-arrow-left">&nbsp;</span></a>
-                                                   <input id="pageinput" class="fl btn pageinput" type="text" value="<?php echo e($paging['pageNo']); ?>" />
-                                                   <a class="btn btn-default btn-sm <?php echo $paging['pageNo'] == $paging['totalPage'] ? 'disabled' : ''; ?>" id="btn_nextpage" href="<?php echo $paging['pageNo'] == $paging['totalPage'] ? '#' : route('rkau_page', [  'mode' => $mode, 'page'=>($paging['pageNo']+1), 'sort'=>'', 'rp'=>'', 'search'=>$persist ]); ?>"><span class="fa fa-arrow-right">&nbsp;</span></a>
-                                                </div>
-                                                <?php endif; ?>
-                                             </div>
-                                          </div>-->
-                  </div>
+                            </tbody>
+                         </table>
+                  </form>
                </div>
+
+               <!--                     <div class="row">
+                                       <div class="col-sm-5">
+                                          <div class="pull-left">
+                                             <input type="hidden" id="maxpage" value="<?php echo e($paging['totalPage']); ?>" />
+                                             <input type="hidden" id="jumptopageinput" value="<?php echo e(route('rkau_page')); ?>" />
+                                             Showing <?php echo e($paging['pageNo'] == 1 ? 1 : ($paging['pageNo'] * $paging['totalPerPage'] - ($paging['totalPerPage'] - 1) )); ?> 
+                                             to <?php echo e($paging['pageNo']  == $paging['totalPage'] ? $paging['totalRec'] : $paging['pageNo'] * $paging['totalPerPage']); ?> 
+                                             of <?php echo e($paging['totalRec']); ?> entries</div>
+               
+                                       </div>
+                                       <div class="col-sm-7">
+               
+                                          <?php if(count($list)): ?>
+                                          <div class="btn-group  pull-right">
+                                             <a class="btn btn-default btn-sm <?php echo $paging['pageNo'] == 1 ? 'disabled' : ''; ?>" id="btn_prevpage" href="<?php echo $paging['pageNo'] == 1 ? '#' : route('rkau_page', [ 'mode' => $mode, 'page'=>($paging['pageNo']-1), 'sort'=>'', 'rp'=>'']); ?>"><span class="fa fa-arrow-left">&nbsp;</span></a>
+                                             <input id="pageinput" class="fl btn pageinput" type="text" value="<?php echo e($paging['pageNo']); ?>" />
+                                             <a class="btn btn-default btn-sm <?php echo $paging['pageNo'] == $paging['totalPage'] ? 'disabled' : ''; ?>" id="btn_nextpage" href="<?php echo $paging['pageNo'] == $paging['totalPage'] ? '#' : route('rkau_page', [  'mode' => $mode, 'page'=>($paging['pageNo']+1), 'sort'=>'', 'rp'=>'']); ?>"><span class="fa fa-arrow-right">&nbsp;</span></a>
+                                          </div>
+                                          <?php endif; ?>
+                                       </div>
+                                    </div>-->
             </div>
          </div>
       </div>
    </div>
-   <!-- /page content -->
+</div>
+</div>
+<!-- /page content -->
 
 </div>
 </div>

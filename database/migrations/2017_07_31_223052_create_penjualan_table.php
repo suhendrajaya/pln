@@ -14,9 +14,9 @@ class CreatePenjualanTable extends Migration
     {
         Schema::create('REKAPITULASI_PENJUALAN', function (Blueprint $table) {
             $table->increments('ID');
-            $table->integer('ORDER_ID');
             $table->char('UNIT_CODE',5);
             $table->integer('YEAR');
+            $table->char('TARIF_CODE',5);
             $table->string('TARIF_CODE1', 32)->nullable();
             $table->string('TARIF_CODE2', 32)->nullable();
             $table->string('PJL_Q1', 32)->nullable();

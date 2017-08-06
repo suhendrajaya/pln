@@ -39,7 +39,7 @@ class LoginController extends Controller
       $validator = Validator::make(Input::all(), $rules);
       if ($validator->fails())
       {
-         $url = route('home-page');
+         $url = route('homepage');
          return Redirect::to($url)
              ->withErrors($validator)
              ->withInput(Input::except('password'));
@@ -52,8 +52,8 @@ class LoginController extends Controller
          }
          else
          {
-            $validator->getMessageBag()->add('username', trans('web.invalidLogin'));
-            $url = route('home-page');
+            $validator->getMessageBag()->add('username', "Username or Password is wrong!");
+            $url = route('homepage');
             return Redirect::to($url)
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));

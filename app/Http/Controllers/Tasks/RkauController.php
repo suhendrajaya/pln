@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Tasks\WebBasedController;
 use App\Model\Users;
 use App\Model\Units;
+use \App\Model\Tarifs;
 use App\Model\SalesAddCustomer;
 use Auth;
 use Excel;
@@ -28,17 +29,34 @@ class RkauController extends WebBasedController
     {
         try
         {
-            $search = !$req->input('search') ? null : $req->input('search');
-            $pageNo = !$req->input('page') ? 1 : $req->input('page');
+            $input = $req->all();
+
+//            $search = !$req->input('search') ? null : $req->input('search');
+//            $pageNo = !$req->input('page') ? 1 : $req->input('page');
+
+
+            $salesAddCust = SalesAddCustomer::where('UNIT_CODE', $this->user->unit_code)
+                ->where('YEAR', date('Y'));
+
+            if ($salesAddCust->count() < 1)
+            {
+                $this->doInitial();
+            }
+
 
             $param = [
-//            'search_term' => ['name' => 'asd'],
+                'search_term' => [
+                    'uploadby_id' => @$input['uploadby_id'],
+                    'unit_code' => @$input['unit_code'],
+                    'tarif_code' => @$input['tarif_code'],
+                    'year' => @$input['year']
+                ],
                 'order_by' => ['created_at' => 'desc'],
-                'cur_page' => $pageNo,
+                'cur_page' => @$input['page'],
                 'total_per_page' => 100
             ];
-            if ($req->input('unit_code'))
-                $param['search_term']['unit_code'] = $req->input('unit_code');
+//            if ($req->input('unit_code'))
+//                $param['search_term']['unit_code'] = $req->input('unit_code');
 
             $resp = SalesAddCustomer::doGet($param);
 
@@ -48,9 +66,10 @@ class RkauController extends WebBasedController
 
             $data = [
                 'mode' => $req->input('mode'),
-                'user' => $this->user,
+                'users' => Users::all(),
                 'list' => $resp['data'],
                 'units' => Units::all(),
+                'tarifs' => Tarifs::all(),
                 'paging' => [
                     'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
                     'totalPage' => @$resp['meta']['totalPage'],
@@ -58,7 +77,7 @@ class RkauController extends WebBasedController
                     'totalRec' => @$resp['meta']['totalRec'],
                 ],
                 /* set persistent search form value here */
-                'persist' => $search,
+                'search' => $param['search_term'],
             ];
 
 
@@ -74,44 +93,58 @@ class RkauController extends WebBasedController
         }
     }
 
-    public function detailById(Request $req)
+
+    public function doInitial()
     {
+        $rsInsert = false;
+
         try
         {
-            $search = !$req->input('search') ? null : $req->input('search');
-            $pageNo = !$req->input('page') ? 1 : $req->input('page');
+            $file = public_path('files/penjualan.xlsx');
 
-            $param = [
-                'order_by' => ['created_at' => 'desc'],
-                'cur_page' => $pageNo,
-                'total_per_page' => 1000 //env('TOTAL_REC_PAGE', 10000)
-            ];
-            $resp = SalesAddCustomer::doGet($param);
-            echo '<pre>';
-            print_r($resp['data']);
-            exit;
-            $data = [
-                'id' => 665,
-                'mode' => $req->input('mode') == 'grid' ? 'grid' : 'edit',
-                'user' => $this->user,
-                'list' => $resp['data'],
-                'paging' => [
-                    'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
-                    'totalPage' => @$resp['meta']['totalPage'],
-                    'totalPerPage' => env('TOTAL_REC_PAGE', 10),
-                    'totalRec' => @$resp['meta']['totalRec'],
-                ],
-                /* set persistent search form value here */
-                'persist' => $search,
-            ];
+            config(['excel.import.startRow' => 3]);
+            $reader = Excel::load($file, function($reader) {
+                    
+                })->get();
+            $ins = [];
+            $results = $reader->toArray();
 
 
-            $this->theme->asset()->cook('rkau', function($asset) {
-                $asset->container('footer')->usePath()->add('rkau_js', 'js/task/rkau.js');
-            });
+            foreach ($results as $val)
+            {
 
-            $this->theme->asset()->serve('rkau');
-            return $this->theme->scope('tasks.rkau_detail', $data)->render();
+                if (is_numeric($val['a']))
+                {
+                    $ins[] = [
+                        'UNIT_CODE' => trim($this->user->unit_code),
+                        'YEAR' => date('Y'),
+                        'TARIF_CODE' => trim($val['a']),
+                        'TARIF_CODE1' => $val['c'],
+                        'TARIF_CODE2' => $val['d'],
+                        'PJL_Q1' => $val['e'],
+                        'PJL_Q2' => $val['f'],
+                        'PJL_Q3' => $val['g'],
+                        'PJL_Q4' => $val['h'],
+                        'PJL_SUM' => $val['i'],
+                        'PDP_Q1' => $val['j'],
+                        'PDP_Q2' => $val['k'],
+                        'PDP_Q3' => $val['l'],
+                        'PDP_Q4' => $val['m'],
+                        'PDP_SUM' => $val['n'],
+                        'SELLING_PRICE' => $val['o'],
+                        'UPLOADBY_ID' => $this->user->id,
+                        'UPLOADBY_NAME' => $this->user->name,
+                        'CREATED_AT' => date('Y-m-d G:i:s')
+                    ];
+                }
+            }
+
+            $rsInsert = SalesAddCustomer::insert($ins);
+
+            return array(
+                "code" => "200",
+                "status" => ($rsInsert ? "success" : "fail" )
+            );
         } catch (Exception $ex)
         {
             json_encode('Caught exception: ', $ex->getMessage(), "\n");
@@ -164,9 +197,9 @@ class RkauController extends WebBasedController
                     if (is_numeric($val['a']))
                     {
                         $ins[] = [
-                            'UNIT_CODE' => $this->user->unit_code,
+                            'UNIT_CODE' => trim($this->user->unit_code),
                             'YEAR' => date('Y'),
-                            'ORDER_ID' => $val['a'],
+                            'TARIF_CODE' => trim($val['a']),
                             'TARIF_CODE1' => $val['c'],
                             'TARIF_CODE2' => $val['d'],
                             'PJL_Q1' => $val['e'],
@@ -273,4 +306,47 @@ class RkauController extends WebBasedController
         return Response()->download($file, 'penjualan.xlsx');
     }
 
+    public function detailById(Request $req)
+    {
+        try
+        {
+            $search = !$req->input('search') ? null : $req->input('search');
+            $pageNo = !$req->input('page') ? 1 : $req->input('page');
+
+            $param = [
+                'order_by' => ['created_at' => 'desc'],
+                'cur_page' => $pageNo,
+                'total_per_page' => 1000 //env('TOTAL_REC_PAGE', 10000)
+            ];
+            $resp = SalesAddCustomer::doGet($param);
+            echo '<pre>';
+            print_r($resp['data']);
+            exit;
+            $data = [
+                'id' => 665,
+                'mode' => $req->input('mode') == 'grid' ? 'grid' : 'edit',
+                'user' => $this->user,
+                'list' => $resp['data'],
+                'paging' => [
+                    'pageNo' => (@$resp['meta']['curPage']) ? @$resp['meta']['curPage'] : 1,
+                    'totalPage' => @$resp['meta']['totalPage'],
+                    'totalPerPage' => env('TOTAL_REC_PAGE', 10),
+                    'totalRec' => @$resp['meta']['totalRec'],
+                ],
+                /* set persistent search form value here */
+                'persist' => $search,
+            ];
+
+
+            $this->theme->asset()->cook('rkau', function($asset) {
+                $asset->container('footer')->usePath()->add('rkau_js', 'js/task/rkau.js');
+            });
+
+            $this->theme->asset()->serve('rkau');
+            return $this->theme->scope('tasks.rkau_detail', $data)->render();
+        } catch (Exception $ex)
+        {
+            json_encode('Caught exception: ', $ex->getMessage(), "\n");
+        }
+    }
 }

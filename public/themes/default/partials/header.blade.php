@@ -31,7 +31,7 @@
                      <li><a href="{{route('dashboard_page')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li>
                      <li><a><i class="fa fa-edit"></i> Task <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                           <li><a href="{{route('user_page')}}">User</a></li>
+                           <!--<li><a href="{{route('user_page')}}">User</a></li>-->
                            <li><a href="{{route('rkau_page')}}">RKAU</a></li>
                         </ul>
                      </li>

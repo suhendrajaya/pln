@@ -44,9 +44,9 @@ class SalesAddCustomer extends Model
                         $query->where('status', '=', $val);
                     }
                 }
-                else
+                else if(!empty($val))
                 {
-                    $query->where($key, '=', $val);
+                    $query->where(strtoupper(trim($key)), '=', strtoupper(trim($val)).' ');
                 }
             }
         }
@@ -64,7 +64,7 @@ class SalesAddCustomer extends Model
 //        }
 //        $query->whereNull('deleted_at');
 
-        $query->orderby('order_id', 'asc');
+        $query->orderby('id', 'asc');
 
         return $query;
     }

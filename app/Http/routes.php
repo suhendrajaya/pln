@@ -43,6 +43,7 @@ Route::group(['prefix' => 'tasks/', 'middleware' => ['auth'], 'namespace' => 'Ta
     Route::post('user/delete', 'UsersController@doDelete');
 
     Route::get('rkau', ['as' => 'rkau_page', 'uses' => 'RkauController@index']);
+    Route::get('rkau/initial', ['as' => 'rkau_add', 'uses' => 'RkauController@doInitial']);
     Route::post('rkau/add', ['as' => 'rkau_add', 'uses' => 'RkauController@doAdd']);
     Route::post('rkau/save', ['as' => 'rkau_save', 'uses' => 'RkauController@doSave']);
     Route::get('rkau/detail/{id}', ['as' => 'rkau_detail', 'uses' => 'RkauController@detailById']);
