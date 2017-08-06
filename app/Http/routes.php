@@ -48,6 +48,13 @@ Route::group(['prefix' => 'tasks/', 'middleware' => ['auth'], 'namespace' => 'Ta
     Route::post('rkau/save', ['as' => 'rkau_save', 'uses' => 'RkauController@doSave']);
     Route::get('rkau/detail/{id}', ['as' => 'rkau_detail', 'uses' => 'RkauController@detailById']);
     Route::get('rkau/download', ['as' => 'rkau_down', 'uses' => 'RkauController@getDownload']);
+    
+    Route::get('penyusutan', ['as' => 'penyusutan_page', 'uses' => 'PenyusutanController@index']);
+    Route::get('penyusutan/initial', ['as' => 'penyusutan_add', 'uses' => 'PenyusutanController@doInitial']);
+    Route::post('penyusutan/add', ['as' => 'penyusutan_add', 'uses' => 'PenyusutanController@doAdd']);
+    Route::post('penyusutan/save', ['as' => 'penyusutan_save', 'uses' => 'PenyusutanController@doSave']);
+    Route::get('penyusutan/detail/{id}', ['as' => 'penyusutan_detail', 'uses' => 'PenyusutanController@detailById']);
+    Route::get('penyusutan/download', ['as' => 'penyusutan_down', 'uses' => 'PenyusutanController@getDownload']);
 });
 
 Route::get('test', function() {

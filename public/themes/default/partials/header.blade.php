@@ -33,6 +33,7 @@
                         <ul class="nav child_menu">
                            <!--<li><a href="{{route('user_page')}}">User</a></li>-->
                            <li><a href="{{route('rkau_page')}}">RKAU</a></li>
+                           <li><a href="{{route('penyusutan_page')}}">Penyusutan</a></li>
                         </ul>
                      </li>
                   </ul>
